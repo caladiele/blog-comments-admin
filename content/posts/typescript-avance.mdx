@@ -1,0 +1,42 @@
+---
+title: "TypeScript avancé : Types utilitaires et génériques"
+slug: "typescript-avance"
+date: "2024-03-05"
+author: "Sophie Leroy"
+category: "TypeScript"
+imageUrl: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&h=400&fit=crop"
+---
+
+# TypeScript avancé : Types utilitaires et génériques
+
+Maîtriser les types avancés en TypeScript peut considérablement améliorer 
+la robustesse et la maintenabilité de votre code.
+
+## Types génériques
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Les génériques permettent de créer des composants réutilisables 
+qui fonctionnent avec plusieurs types.
+
+```typescript
+function identity<T>(arg: T): T {
+  return arg
+}
+```
+
+## Types génériques
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Les génériques permettent de créer des composants réutilisables 
+qui fonctionnent avec plusieurs types.
+
+```typescript
+interface User {
+  id: number
+  name: string
+  email: string
+  password: string
+}
+
+type PublicUser = Omit<User, 'password'>
+```

@@ -1,0 +1,53 @@
+---
+title: "Sécurité web moderne : Guide des bonnes pratiques"
+slug: "securite-web-moderne"
+date: "2024-02-28"
+author: "Alexandre Dupont"
+category: "Sécurité"
+imageUrl: "https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&h=400&fit=crop"
+---
+
+# Sécurité web moderne : Guide des bonnes pratiques
+
+La sécurité web est plus critique que jamais. Voici les pratiques essentielles pour protéger vos applications modernes.
+
+## Authentification et autorisation
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. L'authentification vérifie l'identité, l'autorisation contrôle l'accès aux ressources.
+
+### JWT vs Sessions
+
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Chaque approche a ses avantages :
+
+**JWT :**
+- Stateless
+- Décentralisé
+- Scalable
+
+**Sessions :**
+- Plus sécurisé par défaut
+- Révocation facile
+- Moins de complexité côté client
+
+## Protection CSRF
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+## Headers de sécurité
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur :
+
+- `Content-Security-Policy`
+- `Strict-Transport-Security`
+- `X-Frame-Options`
+- `X-Content-Type-Options`
+
+### Exemple de configuration
+
+```javascript
+const securityHeaders = {
+  'X-Frame-Options': 'DENY',
+  'X-Content-Type-Options': 'nosniff',
+  'Strict-Transport-Security': 'max-age=31536000'
+}
+```

@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  postSlug  String   
+  author    String
+  email     String
+  content   String   
+  approved  Boolean  @default(false)
+  parentId  String? 
+  createdAt DateTime @default(now()) 
+  updatedAt DateTime @updatedAt 
+
+  // Nouveaux champs pour la suppression douce
+  isDeleted Boolean  @default(false)
+  deletedAt DateTime?
+  deletedBy String?  // Qui a supprimé (admin)
+
+  // Relations pour les réponses
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+
+  @@map("comments")
+}
