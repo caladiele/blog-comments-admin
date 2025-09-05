@@ -13,7 +13,8 @@ async function getCommentsWithReplies(postSlug: string, parentId: string | null 
     where: {
       postSlug,
       approved: true,
-      parentId
+      parentId,
+      isDeleted: false  // ✅ CORRECTION : Exclure les commentaires supprimés
     },
     orderBy: {
       createdAt: parentId ? 'asc' : 'desc'
@@ -24,15 +25,11 @@ async function getCommentsWithReplies(postSlug: string, parentId: string | null 
     comments.map(async (comment) => {
       const replies = await getCommentsWithReplies(postSlug, comment.id)
       
-      // Formatter le commentaire selon son statut
       const formattedComment = {
         id: comment.id,
-        author: comment.isDeleted ? `@${comment.author}` : comment.author,
-        content: comment.isDeleted 
-          ? `Le commentaire de @${comment.author} est indisponible` 
-          : comment.content,
+        author: comment.author,
+        content: comment.content,
         createdAt: comment.createdAt,
-        isDeleted: comment.isDeleted,
         replies: replies.length > 0 ? replies : undefined
       }
       
@@ -57,7 +54,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       where: {
         postSlug: slug,
         approved: true,
-        parentId: null
+        parentId: null,
+        isDeleted: false  // ✅ CORRECTION : Exclure les commentaires supprimés
       },
       orderBy: {
         createdAt: 'desc'
@@ -84,7 +82,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       where: {
         postSlug: slug,
         approved: true,
-        parentId: null
+        parentId: null,
+        isDeleted: false  // ✅ CORRECTION : Compter seulement les commentaires non supprimés
       }
     })
 
@@ -126,9 +125,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         where: { id: parentId }
       })
 
-      if (!parentComment || !parentComment.approved) {
+      if (!parentComment || !parentComment.approved || parentComment.isDeleted) {
         return NextResponse.json(
-          { error: 'Commentaire parent non trouvé ou non approuvé' },
+          { error: 'Commentaire parent non trouvé, non approuvé ou supprimé' },
           { status: 404 }
         )
       }

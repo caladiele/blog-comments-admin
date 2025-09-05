@@ -33,6 +33,7 @@ export default function AdminPage() {
   const [activeTab, setActiveTab] = useState<'comments' | 'articles' | 'editor'>('comments')
   const [commentFilter, setCommentFilter] = useState<'pending' | 'approved'>('pending')
   const [loading, setLoading] = useState(true)
+  const [showDeleted, setShowDeleted] = useState(false)
     // États pour les réponses rapides
   const [replyingTo, setReplyingTo] = useState<string | null>(null)
   const [replyContent, setReplyContent] = useState('')
@@ -45,28 +46,32 @@ export default function AdminPage() {
     loadData()
   }, [activeTab, commentFilter])
 
-  const loadData = async () => {
-    setLoading(true)
-    try {
-      if (activeTab === 'comments') {
-        const response = await fetch(`/api/admin/comments?status=${commentFilter}`)
-        if (response.ok) {
-          const data = await response.json()
-          setComments(data.comments)
-        }
-      } else if (activeTab === 'articles' || activeTab === 'editor') {
-        const response = await fetch('/api/admin/articles')
-        if (response.ok) {
-          const data = await response.json()
-          setArticles(data.articles)
-        }
+const loadData = async () => {
+  setLoading(true)
+  try {
+    if (activeTab === 'comments') {
+      const params = new URLSearchParams({
+        status: commentFilter,
+        includeDeleted: showDeleted.toString()
+      })
+      const response = await fetch(`/api/admin/comments?${params}`)
+      if (response.ok) {
+        const data = await response.json()
+        setComments(data.comments)
       }
-    } catch (error) {
-      console.error('Erreur de chargement:', error)
-    } finally {
-      setLoading(false)
+    } else if (activeTab === 'articles' || activeTab === 'editor') {
+      const response = await fetch('/api/admin/articles')
+      if (response.ok) {
+        const data = await response.json()
+        setArticles(data.articles)
+      }
     }
+  } catch (error) {
+    console.error('Erreur de chargement:', error)
+  } finally {
+    setLoading(false)
   }
+}
 
   const handleApprove = async (id: string) => {
     try {
@@ -224,30 +229,48 @@ const cancelReply = () => {
         {activeTab === 'comments' && (
           <div>
             {/* Filter */}
-            <div className="mb-6">
-              <div className="flex gap-4">
-                <button
-                  onClick={() => setCommentFilter('pending')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
-                    commentFilter === 'pending'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  En attente
-                </button>
-                <button
-                  onClick={() => setCommentFilter('approved')}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium ${
-                    commentFilter === 'approved'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  Approuvés
-                </button>
-              </div>
-            </div>
+{activeTab === 'comments' && (
+  <div className="mb-6">
+    <div className="flex gap-4 items-center flex-wrap">
+      <div className="flex gap-4">
+        <button
+          onClick={() => setCommentFilter('pending')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            commentFilter === 'pending'
+              ? 'bg-yellow-100 text-yellow-800'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          En attente
+        </button>
+        <button
+          onClick={() => setCommentFilter('approved')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium ${
+            commentFilter === 'approved'
+              ? 'bg-green-100 text-green-800'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Approuvés
+        </button>
+      </div>
+      
+      <div className="flex items-center gap-2">
+        <label className="flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            checked={showDeleted}
+            onChange={(e) => setShowDeleted(e.target.checked)}
+            className="mr-2 rounded"
+          />
+          <span className="text-sm text-gray-700">
+            Afficher les commentaires supprimés
+          </span>
+        </label>
+      </div>
+    </div>
+  </div>
+)}
 
             {/* Comments List */}
             {loading ? (
