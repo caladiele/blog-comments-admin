@@ -1,12 +1,10 @@
 import type { MDXComponents } from 'mdx/types'
-import { 
-  PortionCalculator, 
-  IngredientList, 
-  Timer, 
-  ShoppingList,
-  EnvironmentalImpact,
-  Alert
-} from '@/components/recipe'
+import PortionCalculator from './src/components/recipe/PortionCalculator'
+import IngredientList from './src/components/recipe/IngredientList'
+import Timer from './src/components/recipe/Timer'
+import ShoppingList from './src/components/recipe/ShoppingList'
+import EnvironmentalImpact from './src/components/recipe/EnvironmentalImpact'
+import Alert from './src/components/recipe/Alert'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
