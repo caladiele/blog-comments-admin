@@ -12,9 +12,9 @@ interface AdminComment {
   createdAt: string
   parentId?: string | null
   replies?: AdminComment[]
-  isDeleted?: boolean      // Ajouter
-  deletedAt?: string       // Ajouter
-  deletedBy?: string       // Ajouter
+  isDeleted?: boolean
+  deletedAt?: string
+  deletedBy?: string 
 }
 
 interface AdminCommentThreadProps {
@@ -23,7 +23,7 @@ interface AdminCommentThreadProps {
   onApprove: (id: string) => void
   onReject: (id: string) => void
   onQuickReply: (commentId: string, content: string) => void
-  onDataReload: () => void  // Ajouter cette ligne
+  onDataReload: () => void
   commentFilter: 'pending' | 'approved'
 }
 
@@ -40,7 +40,7 @@ export default function AdminCommentThread({
   const [replyContent, setReplyContent] = useState('')
   const [isSubmittingReply, setIsSubmittingReply] = useState(false)
 
-  const marginLeft = Math.min(depth, 4) * 20 // 20px par niveau, max 4 niveaux visuels
+  const marginLeft = Math.min(depth, 4) * 20
 
   const handleQuickReply = async () => {
     if (!replyContent.trim()) return
@@ -63,24 +63,24 @@ export default function AdminCommentThread({
   }
 
   const handleDelete = async () => {
-      if (!confirm(`Êtes-vous sûr de vouloir supprimer le commentaire de ${comment.author} ? Il sera remplacé par un message générique mais les réponses seront préservées.`)) {
+    if (!confirm(`Êtes-vous sûr de vouloir supprimer le commentaire de ${comment.author} ? Il sera remplacé par un message générique mais les réponses seront préservées.`)) {
       return
-  }
-
-  try {
-    const response = await fetch(`/api/admin/comments/${comment.id}/delete`, {
-      method: 'POST'
-    })
-
-    if (response.ok) {
-       onDataReload() // Recharger via la fonction existante
-    } else {
-      console.error('Erreur lors de la suppression')
     }
-  } catch (error) {
-    console.error('Erreur lors de la suppression:', error)
+
+    try {
+      const response = await fetch(`/api/admin/comments/${comment.id}/delete`, {
+        method: 'POST'
+      })
+
+      if (response.ok) {
+        onDataReload()
+      } else {
+        console.error('Erreur lors de la suppression')
+      }
+    } catch (error) {
+      console.error('Erreur lors de la suppression:', error)
+    }
   }
-}
 
   // Couleurs selon le statut et la profondeur
   const bgColor = comment.approved 
@@ -114,51 +114,58 @@ export default function AdminCommentThread({
                   Approuvé
                 </span>
               )}
+              {!comment.approved && (
+                <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                  En attente
+                </span>
+              )}
             </div>
             <p className="text-gray-700 mb-4">{comment.content}</p>
           </div>
           
-<div className="flex flex-col gap-2 ml-4">
-  {commentFilter === 'pending' && (
-    <div className="flex gap-2">
-      <button
-        onClick={() => onApprove(comment.id)}
-        className="bg-green-600 text-white px-3 py-1 rounded-md text-sm hover:bg-green-700"
-      >
-        Approuver
-      </button>
-      <button
-        onClick={() => onReject(comment.id)}
-        className="bg-red-600 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700"
-      >
-        Rejeter
-      </button>
-    </div>
-  )}
-  
-  {comment.approved && !comment.isDeleted && (
-    <div className="flex gap-2">
-      <button
-        onClick={() => setShowReplyForm(!showReplyForm)}
-        className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700"
-      >
-        {showReplyForm ? 'Annuler' : 'Répondre'}
-      </button>
-      <button
-        onClick={handleDelete}
-        className="bg-red-600 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700"
-      >
-        Supprimer
-      </button>
-    </div>
-  )}
-  
-  {comment.isDeleted && (
-    <span className="text-sm text-red-600 italic">
-      Commentaire supprimé
-    </span>
-  )}
-</div>
+          <div className="flex flex-col gap-2 ml-4">
+            {/* ✅ CORRECTION : Boutons d'approbation basés sur le statut du commentaire, pas le filtre */}
+            {!comment.approved && !comment.isDeleted && (
+              <div className="flex gap-2">
+                <button
+                  onClick={() => onApprove(comment.id)}
+                  className="bg-green-600 text-white px-3 py-1 rounded-md text-sm hover:bg-green-700"
+                >
+                  Approuver
+                </button>
+                <button
+                  onClick={() => onReject(comment.id)}
+                  className="bg-red-600 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700"
+                >
+                  Rejeter
+                </button>
+              </div>
+            )}
+            
+            {/* ✅ CORRECTION : Boutons d'action pour commentaires approuvés et non supprimés */}
+            {comment.approved && !comment.isDeleted && (
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowReplyForm(!showReplyForm)}
+                  className="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700"
+                >
+                  {showReplyForm ? 'Annuler' : 'Répondre'}
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="bg-red-600 text-white px-3 py-1 rounded-md text-sm hover:bg-red-700"
+                >
+                  Supprimer
+                </button>
+              </div>
+            )}
+            
+            {comment.isDeleted && (
+              <span className="text-sm text-red-600 italic">
+                Commentaire supprimé
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Formulaire de réponse rapide */}

@@ -1,0 +1,95 @@
+---
+title: "Test : Smoothie Bowl Énergisant"
+slug: "test-recette-interactive"
+date: "2025-01-15"
+author: "Chef Végan"
+category: "Recettes"
+imageUrl: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=800&h=400&fit=crop"
+---
+
+# Smoothie Bowl Énergisant
+
+Un petit-déjeuner **coloré et nutritif** pour bien commencer la journée ! Ce smoothie bowl regorge de vitamines et de saveurs.
+
+<PortionCalculator defaultPortions={2} />
+
+<Alert type="tip" title="Astuce du chef">
+Pour un smoothie plus épais, utilisez des fruits congelés et ajoutez moins de liquide au début.
+</Alert>
+
+## 🛒 Ingrédients
+
+export const ingredients = [
+  { name: "Banane mûre", amount: 1, unit: "pièce", essential: true },
+  { name: "Mangue", amount: 150, unit: "g", seasonal: true },
+  { name: "Épinards frais", amount: 30, unit: "g", tip: "On ne sent pas le goût !" },
+  { name: "Lait d'amande", amount: 200, unit: "ml" },
+  { name: "Graines de chia", amount: 1, unit: "c.s." },
+  { name: "Miel ou sirop d'érable", amount: 1, unit: "c.c." },
+  { name: "Granola", amount: 40, unit: "g", category: "Toppings" },
+  { name: "Myrtilles", amount: 50, unit: "g", category: "Toppings" },
+  { name: "Noix de coco râpée", amount: 1, unit: "c.s.", category: "Toppings" }
+]
+
+<IngredientList ingredients={ingredients} basePortions={2} />
+
+## 👨‍🍳 Préparation
+
+### Étape 1 : Préparer la base
+Éplucher la banane et découper la mangue. Laver les épinards.
+
+<Timer duration={3} label="Préparation fruits" />
+
+### Étape 2 : Mixer
+Dans un blender, mixer la banane, la mangue, les épinards et le lait d'amande jusqu'à obtenir une texture lisse et crémeuse.
+
+<Timer duration={2} label="Mixage" />
+
+<Alert type="warning">
+Attention à ne pas trop mixer pour éviter de faire chauffer le mélange.
+</Alert>
+
+### Étape 3 : Finaliser
+Ajouter les graines de chia et le miel. Mixer brièvement pour incorporer.
+
+<Timer duration={1} label="Finalisation" />
+
+### Étape 4 : Dresser
+Verser dans des bols et ajouter les toppings : granola, myrtilles et noix de coco.
+
+## 📊 Valeurs nutritionnelles
+
+Une portion contient environ :
+- **280 calories**
+- **8g de protéines** 
+- **12g de fibres**
+- **Vitamine C** : 120% des AJR
+- **Fer** : 15% des AJR
+
+<Alert type="success" title="Boost nutritionnel">
+Les épinards ajoutent du fer et des folates sans altérer le goût sucré !
+</Alert>
+
+## 🛒 Liste de courses
+
+<ShoppingList ingredients={ingredients} basePortions={2} />
+
+## 🌍 Impact environnemental
+
+<EnvironmentalImpact 
+  comparison="vs petit-déjeuner traditionnel (œufs, bacon, lait)"
+  impactData={{
+    co2Reduction: 75,
+    waterSaving: 80,
+    landSaving: 65,
+    animalsSaved: 0.2
+  }}
+/>
+
+## 💡 Variantes
+
+- **Version chocolat** : Ajouter 1 c.s. de cacao en poudre
+- **Version protéinée** : Incorporer 1 dose de protéine végétale
+- **Version tropicale** : Remplacer par ananas et fruit de la passion
+
+> **Note** : Cette recette se conserve 24h au réfrigérateur. Mélanger avant de consommer.

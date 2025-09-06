@@ -1,7 +1,24 @@
 import type { MDXComponents } from 'mdx/types'
- 
+import { 
+  PortionCalculator, 
+  IngredientList, 
+  Timer, 
+  ShoppingList,
+  EnvironmentalImpact,
+  Alert
+} from '@/components/recipe'
+
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    // Tes composants de recette
+    PortionCalculator,
+    IngredientList,
+    Timer,
+    ShoppingList,
+    EnvironmentalImpact,
+    Alert,
+    
+    // Tes styles existants (conservés)
     h1: ({ children }) => (
       <h1 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">
         {children}

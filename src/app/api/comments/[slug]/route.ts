@@ -13,8 +13,8 @@ async function getCommentsWithReplies(postSlug: string, parentId: string | null 
     where: {
       postSlug,
       approved: true,
-      parentId,
-      isDeleted: false  // ✅ CORRECTION : Exclure les commentaires supprimés
+      parentId
+      // ✅ CORRECTION : On retire isDeleted: false pour permettre de récupérer les commentaires supprimés
     },
     orderBy: {
       createdAt: parentId ? 'asc' : 'desc'
@@ -25,11 +25,15 @@ async function getCommentsWithReplies(postSlug: string, parentId: string | null 
     comments.map(async (comment) => {
       const replies = await getCommentsWithReplies(postSlug, comment.id)
       
+      // ✅ GARDER la logique de formatage pour les commentaires supprimés
       const formattedComment = {
         id: comment.id,
-        author: comment.author,
-        content: comment.content,
+        author: comment.isDeleted ? `@${comment.author}` : comment.author,
+        content: comment.isDeleted 
+          ? `Le commentaire de @${comment.author} est indisponible` 
+          : comment.content,
         createdAt: comment.createdAt,
+        isDeleted: comment.isDeleted,
         replies: replies.length > 0 ? replies : undefined
       }
       
@@ -54,8 +58,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       where: {
         postSlug: slug,
         approved: true,
-        parentId: null,
-        isDeleted: false  // ✅ CORRECTION : Exclure les commentaires supprimés
+        parentId: null
+        // ✅ CORRECTION : On retire isDeleted: false pour compter aussi les commentaires supprimés
       },
       orderBy: {
         createdAt: 'desc'
@@ -70,9 +74,12 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         const replies = await getCommentsWithReplies(slug, comment.id)
         return {
           id: comment.id,
-          author: comment.author,
-          content: comment.content,
+          author: comment.isDeleted ? `@${comment.author}` : comment.author,
+          content: comment.isDeleted 
+            ? `Le commentaire de @${comment.author} est indisponible` 
+            : comment.content,
           createdAt: comment.createdAt,
+          isDeleted: comment.isDeleted,
           replies: replies.length > 0 ? replies : undefined
         }
       })
@@ -82,8 +89,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       where: {
         postSlug: slug,
         approved: true,
-        parentId: null,
-        isDeleted: false  // ✅ CORRECTION : Compter seulement les commentaires non supprimés
+        parentId: null
+        // ✅ CORRECTION : On retire isDeleted: false pour compter aussi les commentaires supprimés
       }
     })
 
@@ -104,7 +111,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-// POST reste identique mais plus simple
+// POST reste identique
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {
     const { slug } = await params
@@ -125,9 +132,9 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
         where: { id: parentId }
       })
 
-      if (!parentComment || !parentComment.approved || parentComment.isDeleted) {
+      if (!parentComment || !parentComment.approved) {
         return NextResponse.json(
-          { error: 'Commentaire parent non trouvé, non approuvé ou supprimé' },
+          { error: 'Commentaire parent non trouvé ou non approuvé' },
           { status: 404 }
         )
       }
