@@ -1,0 +1,65 @@
+/* ============================================
+   RESET DES VALEURS PAR DEFAUT
+   ============================================ */
+
+/* Reset des boutons */
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
+
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+/* Reset des images */
+figure {
+    margin-block: 0;
+    margin-inline: 0;
+}
+
+/* Reset des titres */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+    margin-block: 0;
+    margin-inline: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    margin-block: 0;
+    margin-inline: 0;
+    padding-inline-start: 0;
+
+}
+
+input {
+  all: unset;
+}
+
+* {
+  margin: 0;
+}

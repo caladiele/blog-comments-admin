@@ -1,0 +1,450 @@
+/* src/styles/navigation.css */
+
+@font-face {
+    font-family: bodonyModa;
+    src: url("src/app/ressources/fonts/BodoniModa-Regular.ttf") format("truetype");
+}
+
+
+/* Overlay principal */
+.navigation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--header-bg, #F0EDE7);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.navigation-overlay.nav-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Container */
+.nav-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+/* Header du menu */
+.nav-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+/* Bouton fermer */
+.close-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--header-text--faded);
+  transition: opacity 0.2s ease;
+}
+
+.close-button:hover {
+  opacity: 0.7;
+}
+
+.close-button-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Contenu principal */
+.nav-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Menu principal */
+.nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+/* Items du menu */
+.menu-item {
+  border-bottom: 1px solid hsla(0, 0%, 13%, 10%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+}
+
+/* Item actif (avec sous-menu ouvert) */
+.menu-item--active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Items au-dessus du menu actif */
+.menu-item--above {
+  opacity: 0.3;
+  transform: translateY(-10px) scale(0.98);
+  pointer-events: none;
+}
+
+/* Items en dessous du menu actif - avec fade progressif */
+.menu-item--below {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  border: none;
+  margin: 0;
+}
+
+.menu-item-button,
+.menu-item-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  color: var(--header-text);
+  transition: opacity 0.2s ease;
+}
+
+.menu-item-button:hover,
+.menu-item-link:hover {
+  opacity: 0.7;
+}
+
+.menu-item-text {
+  font-family: 'BodonyModa', sans-serif;
+  font-size: clamp(22px, 22px, 32px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Chevron */
+.menu-item-chevron {
+  transition: transform 0.3s ease;
+}
+
+.menu-item-chevron.chevron-open {
+  transform: rotate(180deg);
+}
+
+/* Sous-menu */
+
+/* Animation du sous-menu avec ajustement de hauteur */
+.submenu {
+  list-style: none;
+  padding: 0 0 20px 20px;
+  margin: 0;
+  animation: expandIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 60vh; /* Limite la hauteur pour éviter le débordement */
+  overflow-y: auto; /* Scroll si nécessaire */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+  animation-fill-mode: backwards;
+}
+
+/* Scrollbar personnalisée pour le sous-menu */
+.submenu::-webkit-scrollbar {
+  width: 4px;
+}
+
+.submenu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.submenu::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 2px;
+}
+
+
+.submenu-item {
+  margin: 0;
+}
+
+.submenu-item-link {
+  display: block;
+  padding: 12px 0;
+  text-decoration: none;
+  color: var(--header-text);
+  opacity: 0.68;
+  transition: opacity 0.2s ease;
+  font-family: 'BodonyModa', sans-serif;
+  font-size: clamp(18px, 20px, 24px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.submenu-item-link:hover {
+  opacity: 1;
+}
+
+/* Recherche */
+.nav-search {
+  /*margin-top: auto;*/
+  padding-top: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Masquage de la recherche quand un menu est actif */
+
+.nav-search.search-hidden {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  pointer-events: none;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(74, 74, 72, 0.2);
+  padding-bottom: 8px;
+}
+
+.search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 8px 0;
+  font-family: 'BodonyModa', sans-serif;
+  font-size: clamp(22px, 24px, 32px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--header-text);
+  outline: none;
+}
+
+.search-input::placeholder {
+  color: var(--header-text);
+  opacity: 0.5;
+}
+
+.search-submit {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--header-text);
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.search-submit:hover {
+  opacity: 1;
+}
+
+/* Mode recherche */
+.navigation-overlay.search-mode .nav-header {
+  justify-content: space-between;
+}
+
+/* Bouton retour */
+.back-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--header-text--faded);
+  font-family: 'hkRegular', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s ease;
+  stroke: var(--header-text--faded);
+}
+
+.back-button:hover {
+  opacity: 0.7;
+}
+
+.search-mode .nav-menu {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+  display: none;
+}
+
+.nav-content.content-search {
+  padding-top: 0;
+}
+
+.search-mode .nav-search {
+  /*
+  position: fixed;
+  top: 180px;
+  left: 180px;
+  right: 180px;
+  */
+  margin: 0;
+  padding: 0;
+  animation: slideSearchUp 0.3s ease;
+}
+
+/* Zone résultats de recherche */
+.search-results {
+  margin-top: 120px;
+  padding: 0 24px;
+  animation: fadeIn 0.3s ease 0.2s both;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .nav-container {
+    padding: 16px;
+  }
+  
+  .nav-header {
+    margin-bottom: 40px;
+  }
+  
+  .menu-item-text {
+    font-size: 13px;
+  }
+  
+  .submenu {
+    padding-left: 16px;
+  }
+}
+
+
+/* Mode sombre */
+[data-theme="dark"] .navigation-overlay {
+  background: var(--backgroundDark, #2A2A28);
+}
+
+[data-theme="dark"] .menu-item,
+[data-theme="dark"] .search-form {
+  border-color: rgba(250, 247, 242, 0.1);
+}
+
+
+
+/* Animations */
+
+/* Animation d'expansion améliorée */
+@keyframes expandIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideSearchUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+
+/* Option 2 : Mode Focus (alternative) */
+/* Décommentez pour tester cette variante */
+/*
+.menu-item--above,
+.menu-item--below {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.menu-item--active {
+  position: relative;
+  z-index: 1;
+}
+*/
+
+/* Option 3 : Compression verticale (alternative) */
+/* Décommentez pour tester cette variante */
+/*
+.menu-item--below {
+  max-height: 40px;
+  opacity: 0.5;
+  transform: scaleY(0.7);
+}
+*/
+
+/* Responsive - ajustements pour mobile */
+@media (max-width: 640px) {
+  .submenu {
+    max-height: 50vh;
+    padding-left: 16px;
+  }
+  
+  .menu-item--below {
+    transform: translateY(10px) scale(0.97);
+  }
+
+    .search-mode .nav-search {
+    left: 16px;
+    right: 16px;
+  }
+  
+  .back-button span {
+    display: none;
+  }
+}
+
+/* Animation smooth pour tous les états */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

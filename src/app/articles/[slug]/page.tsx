@@ -1,3 +1,4 @@
+// src/app/articles/[slug]/page.tsx
 import { getPostBySlug, getAllPostSlugs } from '@/lib/mdx'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Image from 'next/image'
@@ -5,6 +6,14 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import CommentsSection from '@/components/CommentsSection'
 import RelatedPosts from '@/components/RelatedPosts'
+
+// Importer tous les composants de recette
+import PortionCalculator from '@/components/recipe/PortionCalculator'
+import IngredientList from '@/components/recipe/IngredientList'
+import Timer from '@/components/recipe/Timer'
+import ShoppingList from '@/components/recipe/ShoppingList'
+import EnvironmentalImpact from '@/components/recipe/EnvironmentalImpact'
+import Alert from '@/components/recipe/Alert'
 
 interface Props {
   params: Promise<{
@@ -41,6 +50,97 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!post) {
     notFound()
+  }
+
+  // Créer les composants MDX avec les données du post
+  const mdxComponents = {
+    // Composants de recette avec données pré-remplies depuis le frontmatter
+    PortionCalculator: (props: any) => (
+      <PortionCalculator 
+        defaultPortions={post.recipeData?.basePortions || 4}
+        {...props} 
+      />
+    ),
+    IngredientList: (props: any) => (
+      <IngredientList 
+        ingredients={post.recipeData?.ingredients || []}
+        basePortions={post.recipeData?.basePortions || 4}
+        {...props} 
+      />
+    ),
+    ShoppingList: (props: any) => (
+      <ShoppingList 
+        ingredients={post.recipeData?.ingredients || []}
+        basePortions={post.recipeData?.basePortions || 4}
+        {...props} 
+      />
+    ),
+    EnvironmentalImpact: (props: any) => (
+      <EnvironmentalImpact 
+        comparison={post.recipeData?.comparison || "vs équivalent traditionnel"}
+        impactData={post.recipeData?.environmentalImpact}
+        {...props} 
+      />
+    ),
+    // Composants sans données spécifiques
+    Timer,
+    Alert,
+    
+    // Styles existants
+    h1: ({ children }: { children: React.ReactNode }) => (
+      <h1 className="text-4xl font-bold mb-6 text-gray-900 leading-tight">
+        {children}
+      </h1>
+    ),
+    h2: ({ children }: { children: React.ReactNode }) => (
+      <h2 className="text-3xl font-semibold mb-5 text-gray-800 leading-tight">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: { children: React.ReactNode }) => (
+      <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+        {children}
+      </h3>
+    ),
+    p: ({ children }: { children: React.ReactNode }) => (
+      <p className="mb-6 text-gray-700 leading-relaxed text-lg">
+        {children}
+      </p>
+    ),
+    ul: ({ children }: { children: React.ReactNode }) => (
+      <ul className="list-disc list-inside mb-6 text-gray-700 space-y-2">
+        {children}
+      </ul>
+    ),
+    ol: ({ children }: { children: React.ReactNode }) => (
+      <ol className="list-decimal list-inside mb-6 text-gray-700 space-y-2">
+        {children}
+      </ol>
+    ),
+    li: ({ children }: { children: React.ReactNode }) => (
+      <li className="mb-2 leading-relaxed">{children}</li>
+    ),
+    blockquote: ({ children }: { children: React.ReactNode }) => (
+      <blockquote className="border-l-4 border-blue-500 pl-6 py-4 mb-6 italic text-gray-600 bg-gray-50 rounded-r">
+        {children}
+      </blockquote>
+    ),
+    code: ({ children }: { children: React.ReactNode }) => (
+      <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-red-600">
+        {children}
+      </code>
+    ),
+    pre: ({ children }: { children: React.ReactNode }) => (
+      <pre className="bg-gray-900 text-white p-6 rounded-lg overflow-x-auto mb-6 text-sm">
+        {children}
+      </pre>
+    ),
+    strong: ({ children }: { children: React.ReactNode }) => (
+      <strong className="font-semibold text-gray-900">{children}</strong>
+    ),
+    em: ({ children }: { children: React.ReactNode }) => (
+      <em className="italic text-gray-700">{children}</em>
+    ),
   }
 
   return (
@@ -100,7 +200,7 @@ export default async function ArticlePage({ params }: Props) {
               {post.title}
             </h1>
 
-            {/* Contenu MDX avec classes Typography */}
+            {/* Contenu MDX avec composants */}
             <article className="prose prose-lg prose-slate max-w-none 
                                prose-headings:text-gray-900 
                                prose-p:text-gray-700 
@@ -112,6 +212,7 @@ export default async function ArticlePage({ params }: Props) {
                                prose-blockquote:bg-gray-50">
               <MDXRemote 
                 source={post.content}
+                components={mdxComponents}
                 options={{
                   parseFrontmatter: false,
                 }}
@@ -128,9 +229,9 @@ export default async function ArticlePage({ params }: Props) {
         )}
 
         {/* Section commentaires */}
-<div className="mt-12">
-  <CommentsSection postSlug={slug} />
-</div>
+        <div className="mt-12">
+          <CommentsSection postSlug={slug} />
+        </div>
       </main>
     </div>
   )

@@ -1,3 +1,4 @@
+// src/lib/mdx.ts - Version modifiée pour supporter les données de recette
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -9,7 +10,27 @@ export interface PostMetadata {
   author: string
   category: string
   imageUrl: string
-  relatedPosts?: string[] // Nouveaux articles liés (slugs)
+  relatedPosts?: string[]
+  // Nouveaux champs pour les recettes
+  recipeData?: {
+    ingredients?: Array<{
+      name: string
+      amount: number | string
+      unit: string
+      essential?: boolean
+      seasonal?: boolean
+      tip?: string
+      category?: string
+    }>
+    basePortions?: number
+    environmentalImpact?: {
+      co2Reduction: number
+      waterSaving: number
+      landSaving: number
+      animalsSaved?: number
+    }
+    comparison?: string
+  }
 }
 
 export interface Post extends PostMetadata {
@@ -19,7 +40,6 @@ export interface Post extends PostMetadata {
 const postsDirectory = path.join(process.cwd(), 'content/posts')
 
 export function getAllPosts(): Post[] {
-  // Créer le dossier s'il n'existe pas
   if (!fs.existsSync(postsDirectory)) {
     fs.mkdirSync(postsDirectory, { recursive: true })
     return []
@@ -34,7 +54,6 @@ export function getAllPosts(): Post[] {
     })
     .filter(post => post !== null) as Post[]
 
-  // Trier par date décroissante
   return allPosts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }
 
@@ -56,7 +75,8 @@ export function getPostBySlug(slug: string): Post | null {
       author: data.author || 'Auteur inconnu',
       category: data.category || 'Général',
       imageUrl: data.imageUrl || 'https://via.placeholder.com/800x400',
-      relatedPosts: data.relatedPosts || [], // Nouveaux articles liés
+      relatedPosts: data.relatedPosts || [],
+      recipeData: data.recipeData || null, // Nouvelles données de recette
       content,
     }
   } catch (error) {

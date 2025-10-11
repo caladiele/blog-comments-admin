@@ -5,13 +5,55 @@ date: "2025-01-15"
 author: "Chef Végan"
 category: "Recettes"
 imageUrl: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=800&h=400&fit=crop"
+recipeData:
+  basePortions: 2
+  comparison: "vs petit-déjeuner traditionnel (œufs, bacon, lait)"
+  ingredients:
+    - name: "Banane mûre"
+      amount: 1
+      unit: "pièce"
+      essential: true
+    - name: "Mangue"
+      amount: 150
+      unit: "g"
+      seasonal: true
+    - name: "Épinards frais"
+      amount: 30
+      unit: "g"
+      tip: "On ne sent pas le goût !"
+    - name: "Lait d'amande"
+      amount: 200
+      unit: "ml"
+    - name: "Graines de chia"
+      amount: 1
+      unit: "c.s."
+    - name: "Miel ou sirop d'érable"
+      amount: 1
+      unit: "c.c."
+    - name: "Granola"
+      amount: 40
+      unit: "g"
+      category: "Toppings"
+    - name: "Myrtilles"
+      amount: 50
+      unit: "g"
+      category: "Toppings"
+    - name: "Noix de coco râpée"
+      amount: 1
+      unit: "c.s."
+      category: "Toppings"
+  environmentalImpact:
+    co2Reduction: 75
+    waterSaving: 80
+    landSaving: 65
+    animalsSaved: 0.2
 ---
 
 # Smoothie Bowl Énergisant
 
 Un petit-déjeuner **coloré et nutritif** pour bien commencer la journée ! Ce smoothie bowl regorge de vitamines et de saveurs.
 
-<PortionCalculator defaultPortions={2} />
+<PortionCalculator />
 
 <Alert type="tip" title="Astuce du chef">
 Pour un smoothie plus épais, utilisez des fruits congelés et ajoutez moins de liquide au début.
@@ -19,19 +61,7 @@ Pour un smoothie plus épais, utilisez des fruits congelés et ajoutez moins de 
 
 ## 🛒 Ingrédients
 
-export const ingredients = [
-  { name: "Banane mûre", amount: 1, unit: "pièce", essential: true },
-  { name: "Mangue", amount: 150, unit: "g", seasonal: true },
-  { name: "Épinards frais", amount: 30, unit: "g", tip: "On ne sent pas le goût !" },
-  { name: "Lait d'amande", amount: 200, unit: "ml" },
-  { name: "Graines de chia", amount: 1, unit: "c.s." },
-  { name: "Miel ou sirop d'érable", amount: 1, unit: "c.c." },
-  { name: "Granola", amount: 40, unit: "g", category: "Toppings" },
-  { name: "Myrtilles", amount: 50, unit: "g", category: "Toppings" },
-  { name: "Noix de coco râpée", amount: 1, unit: "c.s.", category: "Toppings" }
-]
-
-<IngredientList ingredients={ingredients} basePortions={2} />
+<IngredientList />
 
 ## 👨‍🍳 Préparation
 
@@ -72,19 +102,11 @@ Les épinards ajoutent du fer et des folates sans altérer le goût sucré !
 
 ## 🛒 Liste de courses
 
-<ShoppingList ingredients={ingredients} basePortions={2} />
+<ShoppingList />
 
 ## 🌍 Impact environnemental
 
-<EnvironmentalImpact 
-  comparison="vs petit-déjeuner traditionnel (œufs, bacon, lait)"
-  impactData={{
-    co2Reduction: 75,
-    waterSaving: 80,
-    landSaving: 65,
-    animalsSaved: 0.2
-  }}
-/>
+<EnvironmentalImpact />
 
 ## 💡 Variantes
 

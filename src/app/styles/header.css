@@ -1,0 +1,127 @@
+:root {
+    --header-height: 48px;
+    --header-padding-x: 48px;
+    --header-padding-y: 40px;
+    --header-bg: #F0EDE7;
+    --header-bg-dark-fall: #282624;
+    --header-bg-dark-winter: #161B22;
+    --header-text: #4F4F4F;
+    --header-text--faded: hsla(240, 6%, 35%, 0.68);
+    --menu-background: #89888D;
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@font-face {
+    font-family: hkRegular;
+    src: url("src/app/ressources/fonts/HKGrotesk-Regular.otf") format("opentype");
+}
+
+
+[data-theme="dark"] {
+    --header-bg: var(--header-bg-dark-fall);
+    --header-text: #E3D6BF;
+    --header-text--faded: #F0EDE7;
+    --menu-background: var(--header-text);
+}
+
+.site-header {
+    position: relative;
+    background-color: var(--header-bg);
+    height: var(--header-height);
+    padding: var(--header-padding-y) var(--header-padding-x);
+}
+
+.header-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-center {
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logo {
+    font-family: voyage, serif;
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: 0.02em;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--header-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Menu Bouton */
+
+.menu-button {
+  background: none;
+  border: none;
+  padding: 8px 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--header-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-button-text {
+  font-family: 'hkRegular', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s ease;
+  color: var(--menu-background);
+}
+
+.menu-button-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 40px;
+}
+
+.menu-line {
+  height: 2px;
+  background: var(--menu-background);
+  transition: all 0.3s var(--transition-smooth);
+}
