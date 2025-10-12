@@ -1,0 +1,39 @@
+/* src/app/styles/article-categorie.css */
+
+.article-category {
+  display: inline-block;
+  font-family: 'BodonyModa', serif;
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--hero-category-color, rgba(79, 79, 79, 0.68));
+  text-transform: lowercase;
+  margin-bottom: 16px;
+  
+  /* Animation d'entrée */
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+/* Dark mode */
+[data-theme="dark"] .article-category {
+  color: rgba(227, 214, 191, 0.68);
+}
+
+/* Animation d'apparition */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .article-category {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+}

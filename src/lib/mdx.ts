@@ -3,13 +3,38 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
+export interface ArticleImage {
+  src: string
+  alt: string
+  caption?: string
+  credit?: string
+  couleurDominante?: string
+}
+
 export interface PostMetadata {
-  title: string
+  // === METADONNES PRINCIPALES ===
+  titre: string
   slug: string
   date: string
-  author: string
-  category: string
-  imageUrl: string
+  auteur: string
+  // === CATEGORISATION ===
+  categoriePrincipale: string
+  sousCategorie?: string
+  tags: string[]
+  // === PRODUCTION & LECTURE ===
+  extrait?: string
+  tempsDeLecture?: number
+  typeDePost?: string
+  // === VISUELS ===
+  imageIntro: {
+    src: string
+    alt: string
+    caption?: string
+    credit?: string
+    couleurDominante?: string
+  }
+  imagesArticles?: ArticleImage[]
+  // === RECOMMENDATIONS ===
   relatedPosts?: string[]
   // Nouveaux champs pour les recettes
   recipeData?: {
@@ -37,7 +62,7 @@ export interface Post extends PostMetadata {
   content: string
 }
 
-const postsDirectory = path.join(process.cwd(), 'content/posts')
+const postsDirectory = path.join(process.cwd(), 'content/posts/inspirations/decouvertes')
 
 export function getAllPosts(): Post[] {
   if (!fs.existsSync(postsDirectory)) {
@@ -68,13 +93,15 @@ export function getPostBySlug(slug: string): Post | null {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
 
+  
     return {
       slug,
-      title: data.title || 'Titre non défini',
+      titre: data.titre || 'Titre non défini',
       date: data.date || new Date().toISOString().split('T')[0],
-      author: data.author || 'Auteur inconnu',
-      category: data.category || 'Général',
-      imageUrl: data.imageUrl || 'https://via.placeholder.com/800x400',
+      auteur: data.auteur || 'Auteur inconnu',
+      categoriePrincipale: data.categoriePrincipale || 'Général',
+      tags: data.tags,
+      imageIntro: data.imageIntro,
       relatedPosts: data.relatedPosts || [],
       recipeData: data.recipeData || null, // Nouvelles données de recette
       content,
@@ -102,4 +129,16 @@ export function getAllPostSlugs(): string[] {
   return fileNames
     .filter(name => name.endsWith('.mdx'))
     .map(name => name.replace(/\.mdx$/, ''))
+}
+
+export function getLatestPost(): Post | null {
+  const allPosts = getAllPosts()
+  
+  if (allPosts.length === 0) {
+    return null
+  }
+  
+  // Les posts sont déjà triés par date (plus récent en premier)
+  console.log(allPosts[0])
+  return allPosts[0]
 }

@@ -1,0 +1,64 @@
+/* src/app/styles/hero-article.css */
+
+/* Variables de couleurs pour le Hero */
+
+@import url("variables.css");
+
+:root {
+  /* Overlay gradients */
+  --hero-overlay-start: rgba(240, 237, 231, 0.1);
+  --hero-overlay-end: rgba(240, 237, 231, 0.75);
+  
+  /* Couleurs du texte */
+  --hero-category-color: rgba(79, 79, 79, 0.68);
+  --hero-title-color: #4A4A48;
+  --hero-date-color: rgba(79, 79, 79, 0.5);
+  --hero-button-border: rgba(79, 79, 79, 0.3);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --hero-overlay-dark-start: rgba(40, 38, 36, 0.2);
+  --hero-overlay-dark-end: rgba(40, 38, 36, 0.85);
+}
+
+.hero-article {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 960px 1fr;
+  background-color: var(--backgroundLight);
+  width: 100%;
+  /* Hauteur viewport moins le header */
+  min-height: 600px;
+  /* Pour le stacking context */
+  isolation: isolate;
+  /* Overflow pour contenir les effets */
+  overflow: hidden;
+  padding: 80px 0;
+
+}
+
+
+
+/* Responsive heights */
+@media (max-width: 1024px) {
+  .hero-article {
+    min-height: 500px;
+    max-height: 800px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-article {
+    min-height: 400px;
+    max-height: 700px;
+    height: calc(100vh - var(--header-height, 48px) - (var(--header-padding-y, 40px) * 2));
+  }
+}
+
+/* Support pour les écrans très courts */
+@media (max-height: 600px) {
+  .hero-article {
+    min-height: 100vh;
+  }
+}

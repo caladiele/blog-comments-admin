@@ -1,0 +1,77 @@
+/* src/app/styles/hero-background.css */
+
+.hero-background {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  grid-column: 2;
+  position: relative;
+}
+
+/* Container de l'image */
+.hero-background-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hero-background-image.loaded {
+  opacity: 1;
+}
+
+/* L'image elle-même avec effets */
+.hero-image {
+  object-fit: cover;
+  object-position: center;
+  
+  /* Effets pour cohérence Japandi */
+  filter: saturate(0.85) sepia(0.12) brightness(1.02);
+
+}
+
+
+/* Dark mode */
+[data-theme="dark"] .hero-background-overlay {
+  background: linear-gradient(
+    180deg,
+    var(--hero-overlay-dark-start, rgba(40, 38, 36, 0.2)) 0%,
+    var(--hero-overlay-dark-end, rgba(40, 38, 36, 0.85)) 100%
+  );
+}
+
+[data-theme="dark"] .hero-image {
+  filter: saturate(0.75) brightness(0.85) sepia(0.08);
+}
+
+[data-theme="dark"] .hero-background-grain {
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    );
+  mix-blend-mode: screen;
+}
+
+
+/* Désactiver les animations si préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    animation: none;
+  }
+  
+  .hero-background-image {
+    transition: none;
+  }
+}
