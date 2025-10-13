@@ -1,0 +1,31 @@
+/* src/app/styles/titre-surlignage.css */
+
+/* Effets de surlignage des titres */
+
+.titre-surlignage {
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  white-space: normal;       /* permet les retours à la ligne naturels */
+  word-break: break-word;    /* pour forcer les retours si besoin */
+}
+
+.oyster {
+  background: linear-gradient(to top, hsla(33, 38%, 82%, 0.4) 0%,hsla(33, 38%, 82%, 0.3) 30%, hsla(40, 23%, 92%, 0) 40%);
+}
+
+.silentWhite {
+     background: linear-gradient(to top, #E5E7E4 0%, #FAFAFA 30%); 
+}
+
+.solitude {
+    background: linear-gradient(to top, #E8ECF0 0%, #F5F5F5 30%); 
+}
+
+.frostyMorning {
+    background: linear-gradient(to top, #F0E7E7 0%, #F5F5F5 30%); 
+}
+
+.frostyMorningAlt {
+    background: linear-gradient(to top, #F0E7E7 0%, #FAFAFA 30%); 
+}

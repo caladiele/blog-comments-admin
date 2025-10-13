@@ -6,9 +6,26 @@
     --header-bg: var(--header-bg-dark-fall);
 }
 
+/* === MOBILE FIRST === */
+
 .main {
     display: grid;
-    grid-template-columns: 1fr 960px 1fr;
+    grid-template-columns: 24px 1fr 24px;
     background-color: var(--header-bg);
 }
 
+/* === RESPONSIVE === */
+
+/* Tablette */
+@media (min-width: 640px) {
+  .main {
+    grid-template-columns: 48px 1fr 48px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr 960px 1fr;  
+  }
+}

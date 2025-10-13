@@ -1,8 +1,22 @@
 /* src/app/styles/article-title.css */
 
+@import url("titre-surlignage.css");
+
+/* === DARK MODE === */
+
+[data-theme="dark"] .article-title {
+  color: #E3D6BF;
+}
+
+[data-theme="dark"] .article-title--clickable:hover {
+  color: rgba(227, 214, 191, 0.8);
+}
+
+/* === MOBILE FIRST === */
+
 .article-link {
   /* Largeur maximale pour lisibilité */
-  max-width: 480px;
+  max-width: 512px;
   text-decoration: none;
 }
 
@@ -12,13 +26,8 @@
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--textLightMode, hsla(0, 0%, 31%, 0.9));
-  margin: 20px 0 0 0;
-  
-  /* Taille fluide et responsive */
-  font-size: clamp(32px, 2vw, 36px);
-  
-  /* Largeur maximale pour lisibilité */
-  max-width: 480px;
+  margin: 16px 0 0 0;
+  font-size: clamp(1.75rem, 1.0192rem + 2.0513vw, 2.25rem);
   
   /* Animation d'entrée avec délai */
   opacity: 0;
@@ -31,62 +40,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode */
-[data-theme="dark"] .article-title {
-  color: #E3D6BF;
-}
+/* === RESPONSIVE === */
 
 
-.titre-surlignage {
-  display: inline;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  white-space: normal;       /* permet les retours à la ligne naturels */
-  word-break: break-word;    /* pour forcer les retours si besoin */
-}
-
-.oyster {
-  background: linear-gradient(to top, hsla(33, 38%, 82%, 0.4) 0%,hsla(33, 38%, 82%, 0.3) 30%, hsla(40, 23%, 92%, 0) 40%);
-}
-
-.silentWhite {
-     background: linear-gradient(to top, #E5E7E4 0%, #FAFAFA 30%); 
-}
-
-.solitude {
-    background: linear-gradient(to top, #E8ECF0 0%, #F5F5F5 30%); 
-}
-
-.frostyMorning {
-    background: linear-gradient(to top, #F0E7E7 0%, #F5F5F5 30%); 
-}
-
-.frostyMorningAlt {
-    background: linear-gradient(to top, #F0E7E7 0%, #FAFAFA 30%); 
-}
-
-/* Animation d'apparition */
-@keyframes fadeSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* Tablette */
+@media (min-width: 640px) {
+  .article-link {
+    max-width: 560px;
   }
 }
 
-/* Ajustements responsive */
-@media (max-width: 1024px) {
-  .article-title {
-    font-size: clamp(28px, 4.5vw, 48px);
+@media (min-width: 1024px) {
+.article-link {
+    max-width: 640px;
   }
 }
 
-@media (max-width: 640px) {
-  .article-title {
-    font-size: clamp(24px, 6vw, 36px);
-    line-height: 1.4;
-    margin-top: 16px;
-  }
-}
+/* === EFFETS === */
 
 /* Effet de survol subtil si le titre est cliquable */
 .article-title--clickable {
@@ -98,6 +68,12 @@
   color: rgba(79, 79, 79, 0.7);
 }
 
-[data-theme="dark"] .article-title--clickable:hover {
-  color: rgba(227, 214, 191, 0.8);
+/* === ANIMATIONS === */
+
+/* Animation d'apparition */
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

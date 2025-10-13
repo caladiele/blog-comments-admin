@@ -1,15 +1,21 @@
 /* src/app/styles/article-categorie.css */
 
+/* === DARK MODE === */
+
+[data-theme="dark"] .article-category {
+  color: rgba(227, 214, 191, 0.68);
+}
+
+/* === MOBILE FIRST === */
+
 .article-category {
-  display: inline-block;
   font-family: 'BodonyModaMediumItalic', serif;
-  font-style: italic;
-  font-size: 18px;
-  font-weight: 400;
+  display: inline-block;
+  font-size: clamp(1rem, 0.9199rem + 0.3419vw, 1.125rem);
   letter-spacing: 0.08em;
-  color: var(--hero-category-color, rgba(79, 79, 79, 0.68));
+  color: var(--lightText);
   text-transform: lowercase;
-  margin: 80px 0 32px 0;
+  margin: 32px 0 24px 0;
   
   /* Animation d'entrée */
   opacity: 0;
@@ -18,10 +24,23 @@
   border-bottom: 1px solid var(--hero-category-color);
 }
 
-/* Dark mode */
-[data-theme="dark"] .article-category {
-  color: rgba(227, 214, 191, 0.68);
+/* === RESPONSIVE === */
+
+/* Tablette */
+@media (min-width: 640px) {
+  .article-category {
+    margin: 40px 0 24px 0;
+  }
 }
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .article-category {
+    margin: 48px 0 32px 0;
+  }
+}
+
+/* === ANIMATIONS === */
 
 /* Animation d'apparition */
 @keyframes fadeSlideIn {
@@ -31,10 +50,3 @@
   }
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .article-category {
-    font-size: 12px;
-    letter-spacing: 0.06em;
-  }
-}

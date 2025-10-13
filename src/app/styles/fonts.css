@@ -7,3 +7,8 @@
     font-family: bodonyModaMediumItalic;
     src: url("src/app/ressources/fonts/BodoniModa_MediumItalic.ttf") format("truetype");
 }
+
+@font-face {
+    font-family: hkRegular;
+    src: url("src/app/ressources/fonts/HKGrotesk-Regular.otf") format("opentype");
+}

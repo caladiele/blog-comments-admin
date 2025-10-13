@@ -1,18 +1,18 @@
 /* src/app/styles/hero-content.css */
 
+/* === MOBILE FIRST === */
+
+
 .hero-content {
   grid-column: 2;
-  
-  /* Centrage vertical et horizontal */
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  padding: 32px 24px;  
 }
 
 .hero-content-inner {
   width: 100%;
-  /* Centrage du contenu */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,22 +20,25 @@
 }
 
 .hero-content-inner .article-link {
-  display: inline; /* ou inline */
+  display: inline; 
   text-align: left;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+/* === RESPONSIVE === */
+
+/* Tablette */
+@media (min-width: 640px) {
   .hero-content {
-    padding: 60px 40px;
+    padding: 48px 24px;
   }
   
   .hero-content-inner {
-    max-width: 700px;
+    max-width: 640px;
   }
 }
 
-@media (max-width: 640px) {
+/* Desktop */
+@media (min-width: 1024px) {
   .hero-content {
     padding: 40px 24px;
   }
@@ -44,3 +47,4 @@
     max-width: 100%;
   }
 }
+

@@ -1,10 +1,24 @@
+/* src/app/styles/wabisabi-button.css */
+
+/* Bouton custom */
+
+/* === MOBILE FIRST === */
 .bouton-section {
-    position: relative;
-    width: 200px;
-    height: 140px;
     display: block;
+    position: relative;
+    width: 160px;
+    height: 112px;
+    margin: 56px auto;
     isolation: isolate;
-    margin: 80px auto;
+}
+
+.bouton-wabisabi-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
 }
 
 .bouton-wabisabi-fill {
@@ -17,23 +31,43 @@
     z-index: 1;
 }
 
-.bouton-wabisabi-path {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-}
-
 .bouton-texte {
     position: absolute;
-    z-index: 3;
+    top: 40px;
+    left: -28px;
+    width: 100%;
     height: 100%;
     padding: 0 1rem;
-    top: 36px;
-    left: -55px;
-    width: 100%;
-    font-size: 20px;
-    color: var(--textLightMode)
+    font-size: 22px;
+    color: var(--textLightMode);
+    font-family: hkRegular, serif;
+    z-index: 3;
+}
+
+@media (min-width: 640px) {
+    .bouton-section {
+        margin: 64px auto;
+    }
+    .bouton-wabisabi-fill {
+        top: 26px;
+        left: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bouton-section {
+        width: 200px;
+        height: 140px;
+        margin: 80px auto;
+    }
+    
+    .bouton-wabisabi-fill {
+        top: 24px;      
+        left: 24px;     
+    }
+    
+    .bouton-texte {
+        top: 36px;
+        left: -55px;
+    }
 }
