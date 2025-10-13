@@ -1,3 +1,5 @@
+@import url("fonts.css");
+
 :root {
     --header-height: 48px;
     --header-padding-x: 48px;
@@ -11,11 +13,8 @@
     --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@font-face {
-    font-family: hkRegular;
-    src: url("src/app/ressources/fonts/HKGrotesk-Regular.otf") format("opentype");
-}
 
+/** === DARK MODE === */
 
 [data-theme="dark"] {
     --header-bg: var(--header-bg-dark-fall);
@@ -124,4 +123,36 @@
   height: 2px;
   background: var(--menu-background);
   transition: all 0.3s var(--transition-smooth);
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: var(--header-padding-y) 24px; /* Marges réduites */
+  }
+  
+  .header-container {
+    grid-template-columns: auto 1fr auto; /* Logo | Espace | Menu */
+  }
+  
+  /* Masquer ThemeToggle du header sur mobile */
+  .header-left {
+    display: none;
+  }
+  
+  /* Logo passe à gauche */
+  .header-center {
+    justify-content: flex-start;
+    order: -1; /* Force le logo en première position */
+  }
+  
+  /* Menu reste à droite */
+  .header-right {
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 641px) {
+  .nav-header .theme-toggle {
+    display: none;
+  }
 }

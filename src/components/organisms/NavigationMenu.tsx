@@ -6,6 +6,7 @@ import CloseButton from '@/components/atoms/CloseButton';
 import SearchInput from '@/components/atoms/SearchInput';
 import MenuItem from '@/components/molecules/MenuItem';
 import SubMenuItem from '@/components/molecules/SubMenuItem';
+import ThemeToggle from '@/components/atoms/ThemeToggle';
 
 import '@/app/styles/navigation.css'
 
@@ -189,7 +190,7 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
         <div className="nav-header" onClick={(e) => {
           if (e.target === e.currentTarget) handleClose();
         }}>
-          {isSearchMode && (
+          {isSearchMode ? (
             <button
               className="back-button"
               onClick={handleBackToMenu}
@@ -200,6 +201,8 @@ export default function NavigationMenu({ isOpen, onClose }: NavigationMenuProps)
               </svg>
               <span>retourner au menu</span>
             </button>
+          ) : (
+            <ThemeToggle />
           )}
           <CloseButton onClick={handleClose} />
         </div>

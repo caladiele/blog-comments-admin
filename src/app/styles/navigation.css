@@ -33,7 +33,8 @@
 /* Header du menu */
 .nav-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between; /* ← Changement : space-between au lieu de flex-end */
+  align-items: center;
   margin-bottom: 1rem;
 }
 
@@ -419,6 +420,8 @@
 */
 
 /* Responsive - ajustements pour mobile */
+
+
 @media (max-width: 640px) {
   .submenu {
     max-height: 50vh;
@@ -439,8 +442,15 @@
   }
 }
 
+@media (min-width: 641px) {
+  .nav-header  {
+    justify-content: flex-end;
+  }
+}
+
 /* Animation smooth pour tous les états */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
