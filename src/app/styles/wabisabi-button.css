@@ -2,6 +2,22 @@
 
 /* Bouton custom */
 
+/* === DARK MODE === */
+
+[data-theme="dark"] { 
+
+    .wabisabi-oyster .bouton-wabisabi-path {
+        stroke: var(--backgroundLight);
+    }
+    .wabisabi-oyster .bouton-wabisabi-fill {
+        fill: hsla(42, 58%, 89%, 0.68);     
+
+    }
+    .bouton-texte {
+        color: var(--backgroundLight);
+    }
+}
+
 /* === MOBILE FIRST === */
 .bouton-section {
     display: block;
@@ -12,6 +28,15 @@
     isolation: isolate;
 }
 
+.wabisabi-oyster .bouton-wabisabi-path {
+    stroke: var(--textLightMode);
+}
+
+.wabisabi-oyster .bouton-wabisabi-fill {
+    fill: hsla(33, 38%, 82%, 0.68);
+}
+
+
 .bouton-wabisabi-path {
     position: absolute;
     top: 0;
@@ -20,6 +45,7 @@
     height: 100%;
     z-index: 2;
 }
+
 
 .bouton-wabisabi-fill {
     position: absolute;
@@ -73,3 +99,4 @@
 }
 
 /** === ANIMATIONS ET EFFETS === **/
+

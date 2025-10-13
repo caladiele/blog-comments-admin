@@ -3,7 +3,8 @@
 /* === DARK MODE === */
 
 [data-theme="dark"] .article-category {
-  color: rgba(227, 214, 191, 0.68);
+  color: hsla(40, 23%, 92%, 0.75);
+  border-color: hsla(40, 23%, 92%, 0.75);
 }
 
 /* === MOBILE FIRST === */

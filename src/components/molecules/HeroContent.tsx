@@ -3,7 +3,7 @@
 
 import ArticleCategory from '@/components/atoms/ArticleCategory';
 import ArticleTitle from '@/components/atoms/ArticleTitle';
-import ReadButton from '@/components/atoms/ReadButton';
+import WabisabiButton from '@/components/atoms/WabisabiButton';
 
 import '@/app/styles/hero-content.css'
 
@@ -14,7 +14,6 @@ interface HeroContentProps {
   date: string;
   slug: string;
   className?: string;
-  fillColor?: string;
 }
 
 export default function HeroContent({ 
@@ -22,8 +21,7 @@ export default function HeroContent({
   title, 
   date, 
   slug,
-  className = '' ,
-  fillColor = ''
+  className = ''
 }: HeroContentProps) {
   return (
     <div className={`hero-content ${className}`}>
@@ -35,7 +33,7 @@ export default function HeroContent({
         <ArticleTitle title={title} href={`/articles/${slug}`} as="h1" />
         
         {/* Bouton CTA */}
-        <ReadButton href={`/articles/${slug}`} fillColor="#E2D2BF" />
+        <WabisabiButton href={`/articles/${slug}`} className='wabisabi-button wabisabi-oyster' />
       </div>
     </div>
   );

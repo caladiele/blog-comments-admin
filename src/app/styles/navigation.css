@@ -338,9 +338,7 @@
 
 
 /* Mode sombre */
-[data-theme="dark"] .navigation-overlay {
-  background: var(--backgroundDark, #2A2A28);
-}
+
 
 [data-theme="dark"] .menu-item,
 [data-theme="dark"] .search-form {
