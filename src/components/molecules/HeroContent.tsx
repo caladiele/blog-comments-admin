@@ -14,6 +14,7 @@ interface HeroContentProps {
   date: string;
   slug: string;
   className?: string;
+  fillColor?: string;
 }
 
 export default function HeroContent({ 
@@ -21,7 +22,8 @@ export default function HeroContent({
   title, 
   date, 
   slug,
-  className = '' 
+  className = '' ,
+  fillColor = ''
 }: HeroContentProps) {
   return (
     <div className={`hero-content ${className}`}>
@@ -30,10 +32,10 @@ export default function HeroContent({
         <ArticleCategory category={category} />
         
         {/* Titre principal */}
-        <ArticleTitle title={title} as="h1" />
+        <ArticleTitle title={title} href={`/articles/${slug}`} as="h1" />
         
         {/* Bouton CTA */}
-        <ReadButton href={`/articles/${slug}`} />
+        <ReadButton href={`/articles/${slug}`} fillColor="#E2D2BF" />
       </div>
     </div>
   );

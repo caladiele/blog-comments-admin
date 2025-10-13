@@ -1,0 +1,9 @@
+@font-face {
+    font-family: bodonyModa;
+    src: url("src/app/ressources/fonts/BodoniModa-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: bodonyModaMediumItalic;
+    src: url("src/app/ressources/fonts/BodoniModa_MediumItalic.ttf") format("truetype");
+}

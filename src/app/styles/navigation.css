@@ -1,10 +1,6 @@
 /* src/styles/navigation.css */
 
-@font-face {
-    font-family: bodonyModa;
-    src: url("src/app/ressources/fonts/BodoniModa-Regular.ttf") format("truetype");
-}
-
+@import url("fonts.css"); 
 
 /* Overlay principal */
 .navigation-overlay {

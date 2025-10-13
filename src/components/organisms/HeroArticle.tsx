@@ -14,7 +14,7 @@ interface HeroArticleProps {
 
 export default function HeroArticle({ post, className = '' }: HeroArticleProps) {
   // Extraction des données avec fallbacks
-  console.log(post)
+
   const imageSrc = post.imageIntro.src;
   const category = post.categoriePrincipale || 'Article';
   
@@ -22,15 +22,15 @@ export default function HeroArticle({ post, className = '' }: HeroArticleProps) 
     <section 
       className={`hero-article ${className}`}
       role="region"
-      aria-label="Article mis en avant"
+      aria-label="Dernier article paru sur le site"
     >
-      {/* Background image avec overlay */}
+      {/* Image d'introduction */}
       <HeroBackground 
         imageSrc={imageSrc}
         imageAlt={post.titre}
       />
       
-      {/* Contenu de l'article */}
+      {/* Metadonnées, Titre et liens vers le post */}
       <HeroContent
         category={category}
         title={post.titre}

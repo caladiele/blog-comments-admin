@@ -24,23 +24,18 @@
 
 .hero-article {
   grid-column: 1/-1;
-  display: grid;
-  grid-template-columns: 1fr 960px 1fr;
-  background-color: var(--backgroundLight);
-  width: 100%;
   /* Hauteur viewport moins le header */
-  min-height: 600px;
-  /* Pour le stacking context */
+  display: grid;
+  grid-template-columns: 1fr 960px 1fr;  /* Pour le stacking context */
   isolation: isolate;
-  /* Overflow pour contenir les effets */
-  overflow: hidden;
+  width: 100%;
   padding: 80px 0;
-
 }
 
 
 
 /* Responsive heights */
+/**
 @media (max-width: 1024px) {
   .hero-article {
     min-height: 500px;
@@ -55,10 +50,12 @@
     height: calc(100vh - var(--header-height, 48px) - (var(--header-padding-y, 40px) * 2));
   }
 }
-
+**/
 /* Support pour les écrans très courts */
+/**
 @media (max-height: 600px) {
   .hero-article {
     min-height: 100vh;
   }
 }
+  **/

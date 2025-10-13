@@ -1,4 +1,14 @@
-main {
+@import url("variables.css");
+@import url("fonts.css"); 
+
+
+[data-theme="dark"] .main {
+    --header-bg: var(--header-bg-dark-fall);
+}
+
+.main {
     display: grid;
     grid-template-columns: 1fr 960px 1fr;
+    background-color: var(--header-bg);
 }
+

@@ -20,7 +20,7 @@ export default function HomePage() {
       <Header />
 
       {/* Hero Article */}
-      <main>
+      <main className="main">
         {latestPost && (
           <HeroArticle post={latestPost} />
         )}
