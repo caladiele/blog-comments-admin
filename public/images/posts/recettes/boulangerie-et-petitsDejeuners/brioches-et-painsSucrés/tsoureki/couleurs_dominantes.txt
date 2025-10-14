@@ -1,0 +1,6 @@
+Fleur-de-mauve : #ffffff
+Toureki-couronne : #ffffff
+Tsoureki-cru : #d3d6dd
+Tsoureki-cuit : #ffffff
+Tsoureki-en-preparation : #dbdce0
+Tsoureki-vegan : #ffffff

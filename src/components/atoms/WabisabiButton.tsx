@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 import '@/app/styles/wabisabi-button.css'
 
-interface ReadButtonProps {
+interface WabisabiButtonProps {
   href: string;
   label?: string;
   className?: string
@@ -15,7 +15,7 @@ export default function WabisabiButton({
   href, 
   label = 'lire',
   className = ''
-}: ReadButtonProps) {
+}: WabisabiButtonProps) {
   return (
     <Link 
       href={href}
