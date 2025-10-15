@@ -27,7 +27,6 @@
   letter-spacing: 0.02em;
   color: var(--textLightMode, hsla(0, 0%, 31%, 0.9));
   margin: 16px 0 0 0;
-  font-size: clamp(1.75rem, 1.0192rem + 2.0513vw, 2.25rem);
   
   /* Animation d'entrée avec délai */
   opacity: 0;
@@ -38,6 +37,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1.article-title {
+  font-size: clamp(1.75rem, 1.0192rem + 2.0513vw, 2.25rem);
+}
+
+h2.article-title {
+  font-size: clamp(1.75rem, 26px, 32px);
 }
 
 /* === RESPONSIVE === */

@@ -28,13 +28,19 @@
     isolation: isolate;
 }
 
-.wabisabi-oyster .bouton-wabisabi-path {
+.wabisabi-oyster .bouton-wabisabi-path,
+.wabisabi-silentWhite .bouton-wabisabi-path {
     stroke: var(--textLightMode);
 }
 
 .wabisabi-oyster .bouton-wabisabi-fill {
     fill: hsla(33, 38%, 82%, 0.68);
 }
+
+.wabisabi-silentWhite .bouton-wabisabi-fill {
+    fill: hsla(100, 6%, 90%, 1);
+}
+
 
 
 .bouton-wabisabi-path {

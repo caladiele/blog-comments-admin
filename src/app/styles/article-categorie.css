@@ -25,6 +25,10 @@
   border-bottom: 1px solid var(--hero-category-color);
 }
 
+.recipes-section .article-category {
+  margin: 0;
+}
+
 /* === RESPONSIVE === */
 
 /* Tablette */
@@ -39,6 +43,7 @@
   .article-category {
     margin: 48px 0 32px 0;
   }
+
 }
 
 /* === ANIMATIONS === */

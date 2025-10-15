@@ -9,12 +9,14 @@ interface ArticleTitleProps {
   title: string;
   as?: 'h1' | 'h2' | 'h3';
   className?: string;
-  href: string
+  href: string;
+  color: string;
 }
 
 export default function ArticleTitle({ 
   href,
-  title, 
+  title,
+  color, 
   as: Tag = 'h1',
   className = '' 
 }: ArticleTitleProps) {
@@ -25,7 +27,7 @@ export default function ArticleTitle({
       aria-label={`Lire l'article`}
     >
       <Tag className={`article-title ${className}`}>
-        {<span className="titre-surlignage oyster">{title}</span>}
+        {<span className={`titre-surlignage ${color}`}>{title}</span>}
       </Tag>
     </Link>
   );
