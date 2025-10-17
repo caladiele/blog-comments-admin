@@ -9,7 +9,7 @@
 .recipe-page {
   width: 100%;
   min-height: 100vh;
-  background: var(--backgroundLight);
+  background: var(--background-light);
 }
 
 

@@ -3,18 +3,18 @@
 /* === DARK MODE === */
 
 [data-theme="dark"] .recipe-meta-badge {
-    color: var(--backgroundLight);
+    color: var(--background-light);
 }
 
 [data-theme="dark"] .recipe-icon-time--fill,
 [data-theme="dark"] .recipe-icon-badge--fill {
   fill: var(--icon-darl);
-  stroke: var(--backgroundLight);
+  stroke: var(--background-light);
 }
 
 [data-theme="dark"] .recipe-icon-time--path,
 [data-theme="dark"] .recipe-icon-badge--path {
-  stroke: var(--backgroundLight);
+  stroke: var(--background-light);
 }
 
 .recipe-meta-badge {
@@ -24,7 +24,7 @@
   gap: 6px;
   font-family: 'hkRegular', sans-serif;
   font-size: 18px;
-  color: var(--lightText);
+  color: var(--text-color--light-mode--faded);
   opacity: 0.7;
 }
 
@@ -40,13 +40,13 @@
 
 .recipe-icon-time--fill,
 .recipe-icon-badge--fill {
-  fill: var(--icon-light);
-  stroke: var(--textLightMode);
+  fill: var(--icon-color--light-mode);
+  stroke: var(--text-color--light-mode);
 }
 
 .recipe-icon-time--path,
 .recipe-icon-badge--path {
-  stroke: var(--textLightMode);
+  stroke: var(--text-color--light-mode);
 }
 
 

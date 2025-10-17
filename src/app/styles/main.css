@@ -4,6 +4,7 @@
 
 [data-theme="dark"] .main {
     --header-bg: var(--header-bg-dark-fall);
+    color: var(--background-light);
 }
 
 /* === MOBILE FIRST === */
@@ -12,6 +13,7 @@
     display: grid;
     grid-template-columns: 24px 1fr 24px;
     background-color: var(--header-bg);
+    color: var(--text-color--light-mode);
 }
 
 /* === RESPONSIVE === */

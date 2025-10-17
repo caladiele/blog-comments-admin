@@ -1,14 +1,61 @@
+/* ============================================
+                VARIABLES CSS 
+   ============================================ */
+
 :root {
-    --backgroundLight: hsla(40, 23%, 92%, 1);
-    --textLightMode: hsla(0,0%,31%,0.9);
-    --textDarkMode: hsla(38, 39%, 82%, 1);
-    --lightText: hsla(240, 6%, 37%, 0.68);
-    --backgroundDark: #0000;
-    --icon-light: hsla(110, 5%, 78%,1);
-    --icon-dark: hsla(215, 21%, 11%,1);
-    --drWhite: #FAFAFA;
-    --iridium: hsla(40, 3%, 23%,1);
+    /* 
+        === COULEURS === 
+    */
+
+    /* Backgrounds principaux */
+    --background-light: hsla(40, 23%, 92%, 1);
+    --background-dark-fall: hsla(0,0%,31%,0.9);
+    --background-dark-winter: hsla(215, 21%, 11%,1);
+
+    /* Backgrounds secondaires */
+        /* Light Theme */
+    --background-light--drWhite: hsla(0, 0%, 98%, 1);
+        /* Dark Themes */
+    --background-dark--iridium: hsla(40, 3%, 23%,1);
+
+    /* Textes */
+    --text-color--light-mode: hsla(0, 0%, 31%, 0.9);
+    --text-color--light-mode--faded: hsla(0, 0, 31%, 0.68);
+    --text-color--dark-mode: var(--background-light);
+
+    /* Icones */
+    --icon-color--light-mode: hsla(110, 5%, 78%,1); 
+    --icon-color--dark-mode--fall: hsla(215, 21%, 11%,1);
+
+    /* 
+        === ESPACEMENTS === 
+    */
+    
+    /* Marges */
+    --margin-xxs: 8px;
+    --margin-xs: 16px;
+    --margin-s: 24px;
+    --margin-m: 32px;
+    --margin-l: 40px;
+
+    --padding-xxs: var(--margin-xxs);
+    --padding-xs: var(--margin-xs);
+    --padding-s: var(--margin-s);
+    --padding-m: var(--margin-m);
+    --padding-l: var(--margin-l);
+
+    --gap-xxxs: 4px;
+    --gap-xxs: var(--margin-xxs);
+    --gap-xs: var(--margin-xs);
+    --gap-s: var(--margin-s);
+    --gap-m: var(--margin-m);
+    --gap-l: var(--margin-l);
 }
 
 
-
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -2,11 +2,15 @@
 
 /* === DARK MODE === */
 
-[data-theme="dark"] .article-category {
-  color: var(--backgroundLight);
-  border-color: var(--backgroundLight);
-}
+[data-theme="dark"] {
 
+  .article-category {
+    color: var(--background-light);
+    border-color: var(--background-light);
+  }
+
+}
+  
 /* === MOBILE FIRST === */
 
 .article-category {
@@ -14,19 +18,20 @@
   display: inline-block;
   font-size: clamp(1rem, 0.9199rem + 0.3419vw, 1.125rem);
   letter-spacing: 0.08em;
-  color: var(--lightText);
+  color: var(--text-color--light-mode--faded);
   text-transform: lowercase;
-  margin: 32px 0 24px 0;
+  margin: var(--margin-m) 0 var(--margin-s) 0;
   
   /* Animation d'entrée */
   opacity: 0;
   transform: translateY(10px);
   animation: fadeSlideIn 0.6s ease forwards;
-  border-bottom: 1px solid var(--lightText);
+  border-bottom: 1px solid var(--text-color--light-mode--faded);
 }
 
+
 .recipes-section .article-category {
-  margin: 0;
+  margin: 0; /* Suppression de la marge entourant les catégories dans la section recettes */
 }
 
 /* === RESPONSIVE === */
@@ -34,25 +39,9 @@
 /* Tablette */
 @media (min-width: 640px) {
   .article-category {
-    margin: 40px 0 24px 0;
+    margin: var(--margin-l) 0 var(--margin-s) 0;
   }
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
-  .article-category {
-    margin: 48px 0 32px 0;
-  }
 
-}
-
-/* === ANIMATIONS === */
-
-/* Animation d'apparition */
-@keyframes fadeSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 

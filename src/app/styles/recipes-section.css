@@ -5,12 +5,12 @@
 /* === DARK MODE === */
 
 [data-theme="dark"] .recipes-section {
-  background-color: var(--iridium);
+  background-color: var(--background-dark--iridium);
 }
 
 *[data-theme="dark"] .recipes-heading {
-  color: var(--backgroundLight);
-  border-color: var(--backgroundLight);
+  color: var(--background-light);
+  border-color: var(--background-light);
 }
 
 /* === MOBILE FIRST === */
@@ -22,7 +22,7 @@
   grid-column: 1 / -1;
   width: 100%;
   gap: 48px 16px;
-  background-color: var(--drWhite);
+  background-color: var(--background-light--drWhite);
   justify-items: center;
   padding-top: 40px;
 }
@@ -32,8 +32,8 @@
   font-family: bodonyModa, serif;
   font-size: clamp(28px, 6vw, 32px);
   font-weight: 400;
-  color: var(--textLightMode);
-  border-bottom: 1px solid var(--textLightMode);
+  color: var(--text-color--light-mode);
+  border-bottom: 1px solid var(--text-color--light-mode);
   margin: 0;
   text-align: center;
   letter-spacing: 0.02em;

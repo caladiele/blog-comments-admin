@@ -8,7 +8,7 @@
 
     .wabisabi-oyster .bouton-wabisabi-path,
     .wabisabi-silentWhite .bouton-wabisabi-path {
-        stroke: var(--backgroundLight);
+        stroke: var(--background-light);
     }
     .wabisabi-oyster .bouton-wabisabi-fill {
         fill: hsla(42, 58%, 89%, 0.68);     
@@ -17,7 +17,7 @@
         fill: hsla(42, 58%, 89%, 0.3);     
     }
     .bouton-texte {
-        color: var(--backgroundLight);
+        color: var(--background-light);
     }
 }
 
@@ -33,7 +33,7 @@
 
 .wabisabi-oyster .bouton-wabisabi-path,
 .wabisabi-silentWhite .bouton-wabisabi-path {
-    stroke: var(--textLightMode);
+    stroke: var(--text-color--light-mode);
 }
 
 .wabisabi-oyster .bouton-wabisabi-fill {
@@ -74,7 +74,7 @@
     height: 100%;
     padding: 0 1rem;
     font-size: 22px;
-    color: var(--textLightMode);
+    color: var(--text-color--light-mode);
     font-family: hkRegular, serif;
     z-index: 3;
 }

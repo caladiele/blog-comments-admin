@@ -11,7 +11,7 @@
 }
 
 [data-theme="dark"] .hero-image {
-  filter: saturate(0.75) brightness(0.85) sepia(0.08);
+  filter: saturate(0.95) brightness(0.95) sepia(0.08);
 }
 
 [data-theme="dark"] .hero-background-grain {
