@@ -3,8 +3,8 @@
 /* === DARK MODE === */
 
 [data-theme="dark"] .article-category {
-  color: hsla(40, 23%, 92%, 0.75);
-  border-color: hsla(40, 23%, 92%, 0.75);
+  color: var(--backgroundLight);
+  border-color: var(--backgroundLight);
 }
 
 /* === MOBILE FIRST === */
@@ -22,7 +22,7 @@
   opacity: 0;
   transform: translateY(10px);
   animation: fadeSlideIn 0.6s ease forwards;
-  border-bottom: 1px solid var(--hero-category-color);
+  border-bottom: 1px solid var(--lightText);
 }
 
 .recipes-section .article-category {

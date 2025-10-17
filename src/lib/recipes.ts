@@ -9,6 +9,7 @@ export interface RecipeData {
   categoriePrincipale: string;
   sousCategorie?: string;
   tagTemps: string;
+  tagMisEnAvant?: string;
   tags: string[];
   imageIntro: {
     src: string;
@@ -17,13 +18,27 @@ export interface RecipeData {
   };
 }
 
+export interface RecipeFullData extends RecipeData {
+  content: string;
+  date: string;
+  tagMisEnAvant?: string;
+  // Autres métadonnées complètes
+  auteur?: string;
+  derniereModification?: string;
+  imagesArticle?: Array<{
+    src: string;
+    alt: string;
+    credit?: string;
+    couleurDominante?: string;
+  }>;
+}
+
 // Fonction récursive pour trouver tous les fichiers .md
 function getAllMarkdownFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
   const files = fs.readdirSync(dirPath);
 
   files.forEach((file) => {
     const filePath = path.join(dirPath, file);
-    console.log(filePath)
     if (fs.statSync(filePath).isDirectory()) {
       // Si c'est un dossier, on explore récursivement
       arrayOfFiles = getAllMarkdownFiles(filePath, arrayOfFiles);
@@ -63,6 +78,47 @@ export async function getAllRecipes(): Promise<RecipeData[]> {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   return recipes;
+}
+
+// NOUVELLE FONCTION : Récupérer une recette par slug
+export async function getRecipeBySlug(slug: string): Promise<RecipeFullData | null> {
+  const recipesDirectory = path.join(process.cwd(), 'content/posts/recettes');
+  const allFiles = getAllMarkdownFiles(recipesDirectory);
+  
+  for (const filePath of allFiles) {
+    try {
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const { data, content } = matter(fileContents);
+      
+      if (data.slug === slug) {
+        return {
+          titre: data.titre,
+          slug: data.slug,
+          date: data.date,
+          categoriePrincipale: data.categoriePrincipale,
+          sousCategorie: data.sousCategorie,
+          tagTemps: data.tagTemps,
+          tagMisEnAvant: data.tagMisEnAvant,
+          tags: data.tags || [],
+          imageIntro: data.imageIntro,
+          auteur: data.auteur,
+          derniereModification: data.derniereModification,
+          imagesArticle: data.imagesArticle,
+          content
+        };
+      }
+    } catch (error) {
+      console.warn(`⚠️ Erreur lecture fichier: ${filePath}`);
+    }
+  }
+  
+  return null;
+}
+
+// NOUVELLE FONCTION : Générer les slugs pour static generation
+export async function getAllRecipeSlugs(): Promise<string[]> {
+  const recipes = await getAllRecipes();
+  return recipes.map(recipe => recipe.slug);
 }
 
 

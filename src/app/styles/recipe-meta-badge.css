@@ -1,5 +1,22 @@
 /* src/app/styles/recipe-meta-badge.css */
 
+/* === DARK MODE === */
+
+[data-theme="dark"] .recipe-meta-badge {
+    color: var(--backgroundLight);
+}
+
+[data-theme="dark"] .recipe-icon-time--fill,
+[data-theme="dark"] .recipe-icon-badge--fill {
+  fill: var(--icon-darl);
+  stroke: var(--backgroundLight);
+}
+
+[data-theme="dark"] .recipe-icon-time--path,
+[data-theme="dark"] .recipe-icon-badge--path {
+  stroke: var(--backgroundLight);
+}
+
 .recipe-meta-badge {
   margin-top: 16px;
   display: inline-flex;
@@ -20,6 +37,18 @@
 .badge-label {
   line-height: 1;
 }
+
+.recipe-icon-time--fill,
+.recipe-icon-badge--fill {
+  fill: var(--icon-light);
+  stroke: var(--textLightMode);
+}
+
+.recipe-icon-time--path,
+.recipe-icon-badge--path {
+  stroke: var(--textLightMode);
+}
+
 
 /* Tablette et + */
 @media (min-width: 640px) {

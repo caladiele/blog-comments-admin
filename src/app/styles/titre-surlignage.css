@@ -2,9 +2,10 @@
 
 /* === DARK MODE === */
 
-[data-theme="dark"] .oyster {
+[data-theme="dark"] .oyster, [data-theme="dark"]  .silentWhite {
     background: linear-gradient(to top, hsla(42, 58%, 89%, 0.3) 0%,hsla(42, 58%, 89%, 0.2) 30%, hsla(30, 5%, 15%, 0) 40%);
 }
+
 
 /* Effets de surlignage des titres */
 

@@ -1,9 +1,13 @@
 :root {
-    --backgroundLight: #F0EDE7;
+    --backgroundLight: hsla(40, 23%, 92%, 1);
     --textLightMode: hsla(0,0%,31%,0.9);
+    --textDarkMode: hsla(38, 39%, 82%, 1);
     --lightText: hsla(240, 6%, 37%, 0.68);
     --backgroundDark: #0000;
+    --icon-light: hsla(110, 5%, 78%,1);
+    --icon-dark: hsla(215, 21%, 11%,1);
     --drWhite: #FAFAFA;
+    --iridium: hsla(40, 3%, 23%,1);
 }
 
 

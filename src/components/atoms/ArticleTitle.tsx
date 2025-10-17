@@ -9,8 +9,9 @@ interface ArticleTitleProps {
   title: string;
   as?: 'h1' | 'h2' | 'h3';
   className?: string;
-  href: string;
+  href?: string;
   color: string;
+  hasLink?: boolean
 }
 
 export default function ArticleTitle({ 
@@ -18,17 +19,24 @@ export default function ArticleTitle({
   title,
   color, 
   as: Tag = 'h1',
-  className = '' 
+  className = '',
+  hasLink 
 }: ArticleTitleProps) {
   return (
-    <Link 
-      href={href}
-      className={`article-link ${className}`}
-      aria-label={`Lire l'article`}
-    >
-      <Tag className={`article-title ${className}`}>
-        {<span className={`titre-surlignage ${color}`}>{title}</span>}
-      </Tag>
-    </Link>
+      hasLink ? (
+        <Link 
+          href={href || "#"}
+          className={`article-link`}
+          aria-label={`Lire l'article`}
+        >
+          <Tag className={`article-title ${className}`}>
+            {<span className={`titre-surlignage ${color}`}>{title}</span>}
+          </Tag>
+        </Link>
+      ) : (
+          <Tag className={`article-title`}>
+            {<span className={`titre-surlignage ${color}`}>{title}</span>}
+          </Tag>
+      )
   );
 }

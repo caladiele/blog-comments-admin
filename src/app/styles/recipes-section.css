@@ -2,6 +2,16 @@
 
 @import url("variables.css");
 
+/* === DARK MODE === */
+
+[data-theme="dark"] .recipes-section {
+  background-color: var(--iridium);
+}
+
+*[data-theme="dark"] .recipes-heading {
+  color: var(--backgroundLight);
+  border-color: var(--backgroundLight);
+}
 
 /* === MOBILE FIRST === */
 

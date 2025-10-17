@@ -1,0 +1,246 @@
+/* src/app/styles/breadcrumb.css */
+
+/* === MOBILE FIRST === */
+
+.breadcrumb {
+  width: 100%;
+  padding: 24px;
+  background: transparent;
+  grid-column: 2;
+  position: relative;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 12px 0;
+  position: relative;
+  
+  /* Passage à BodonyModa pour cohérence */
+  font-family: 'BodonyModa', serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  color: var(--text-secondary, hsla(148, 8%, 48%, 50%));
+}
+
+/* Trait de pinceau sous le breadcrumb */
+.breadcrumb-list::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, 
+    hsla(33, 38%, 82%, 0.6) 0%, 
+    hsla(33, 38%, 82%, 0.4) 40%, 
+    transparent 100%);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: drawBreadcrumbLine 1.2s ease 0.3s forwards;
+}
+
+/* Animation du trait qui se dessine */
+@keyframes drawBreadcrumbLine {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  
+  /* Animation d'apparition séquentielle */
+  opacity: 0;
+  transform: translateY(6px);
+  animation: breadcrumbFadeIn 0.6s ease forwards;
+}
+
+/* Délais séquentiels pour l'animation */
+.breadcrumb-item:nth-child(1) { animation-delay: 0.1s; }
+.breadcrumb-item:nth-child(2) { animation-delay: 0.15s; }
+.breadcrumb-item:nth-child(3) { animation-delay: 0.2s; }
+.breadcrumb-item:nth-child(4) { animation-delay: 0.25s; }
+.breadcrumb-item:nth-child(5) { animation-delay: 0.3s; }
+
+@keyframes breadcrumbFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.breadcrumb-link {
+  color: var(--text-secondary, hsla(148, 8%, 48%, 50%));
+  text-decoration: none;
+  opacity: 0.65;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  font-style: italic;
+  position: relative;
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+.breadcrumb-link:hover {
+  opacity: 0.9;
+  color: var(--text-primary, hsla(0, 0%, 31%, 0.9));
+  transform: translateY(-1px);
+}
+
+/* Soulignement calligraphique au survol */
+.breadcrumb-link::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--text-primary, hsla(0, 0%, 31%, 0.9));
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+
+.breadcrumb-link:hover::before {
+  width: calc(100% - 10px);
+}
+
+.breadcrumb-separator {
+  opacity: 0.4;
+  font-style: normal;
+  color: var(--text-secondary, hsla(148, 8%, 48%, 50%));
+  font-size: 11px;
+  user-select: none;
+  
+  /* Animation d'apparition pour les séparateurs */
+  animation: breadcrumbSeparatorFadeIn 0.4s ease 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes breadcrumbSeparatorFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.breadcrumb-current {
+  color: var(--text-primary, hsla(0, 0%, 31%, 0.9));
+  opacity: 0.85;
+  font-style: italic;
+  font-weight: 500;
+  cursor: default;
+  
+  /* Truncate si trop long sur mobile */
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* === RESPONSIVE === */
+
+/* Tablette */
+@media (min-width: 640px) {
+  .breadcrumb {
+    padding: 20px 48px;
+  }
+  
+  .breadcrumb-list {
+    font-size: 14px;
+    gap: 10px;
+    padding-bottom: 14px;
+  }
+  
+  .breadcrumb-current {
+    max-width: 300px;
+  }
+  
+  .breadcrumb-link {
+    padding: 4px 6px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .breadcrumb {
+    padding: 32px 0;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  
+  .breadcrumb-list {
+    font-size: 15px;
+    gap: 12px;
+    padding-bottom: 16px;
+  }
+  
+  .breadcrumb-current {
+    max-width: none;
+  }
+  
+  .breadcrumb-separator {
+    font-size: 12px;
+  }
+}
+
+
+
+/** === DARK MODE === */
+
+[data-theme="dark"] .breadcrumb-list::after {
+  background: linear-gradient(to right, 
+    rgba(227, 214, 191, 0.3) 0%, 
+    rgba(227, 214, 191, 0.2) 40%, 
+    transparent 100%);
+}
+
+[data-theme="dark"] .breadcrumb-link {
+  color: rgba(227, 214, 191, 0.6);
+}
+
+[data-theme="dark"] .breadcrumb-link:hover {
+  color: rgba(227, 214, 191, 0.9);
+}
+
+[data-theme="dark"] .breadcrumb-link::before {
+  background: rgba(227, 214, 191, 0.8);
+}
+
+[data-theme="dark"] .breadcrumb-current {
+  color: rgba(227, 214, 191, 0.85);
+}
+
+[data-theme="dark"] .breadcrumb-separator {
+  color: rgba(227, 214, 191, 0.4);
+}
+
+/** === ACCESSIBILITE === */
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumb-list::after,
+  .breadcrumb-item,
+  .breadcrumb-separator {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .breadcrumb-link {
+    transition: opacity 0.2s ease;
+  }
+  
+  .breadcrumb-link:hover {
+    transform: none;
+  }
+}

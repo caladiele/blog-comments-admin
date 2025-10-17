@@ -5,7 +5,7 @@
 /* === DARK MODE === */
 
 [data-theme="dark"] .article-title {
-  color: #E3D6BF;
+  color: var(--backgroundLight);
 }
 
 [data-theme="dark"] .article-title--clickable:hover {
@@ -15,7 +15,6 @@
 /* === MOBILE FIRST === */
 
 .article-link {
-  /* Largeur maximale pour lisibilité */
   max-width: 512px;
   text-decoration: none;
 }
@@ -46,6 +45,8 @@ h1.article-title {
 h2.article-title {
   font-size: clamp(1.75rem, 26px, 32px);
 }
+
+
 
 /* === RESPONSIVE === */
 

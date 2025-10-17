@@ -57,7 +57,14 @@ export default function RecipeCard({
           <ArticleCategory category={categoriePrincipale} />
           
           {/* Titre */}
-          <ArticleTitle title={titre} href={`/recettes/${slug}`} color="silentWhite" as="h2" />
+          <ArticleTitle 
+            title={titre} 
+            href={`/recettes/${slug}`} 
+            color="silentWhite" 
+            as="h2" 
+            hasLink={true}
+            className={'article-title--clickable'} 
+          />
 
           {/* Métadonnées */}
           <div className="recipe-meta">

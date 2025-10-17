@@ -6,12 +6,15 @@
 
 [data-theme="dark"] { 
 
-    .wabisabi-oyster .bouton-wabisabi-path {
+    .wabisabi-oyster .bouton-wabisabi-path,
+    .wabisabi-silentWhite .bouton-wabisabi-path {
         stroke: var(--backgroundLight);
     }
     .wabisabi-oyster .bouton-wabisabi-fill {
         fill: hsla(42, 58%, 89%, 0.68);     
-
+    }
+    .wabisabi-silentWhite .bouton-wabisabi-fill {
+        fill: hsla(42, 58%, 89%, 0.3);     
     }
     .bouton-texte {
         color: var(--backgroundLight);

@@ -16,6 +16,7 @@ export default function HeroArticle({ post, className = '' }: HeroArticleProps) 
   // Extraction des données avec fallbacks
 
   const imageSrc = post.imageIntro.src;
+  const imageAlt = post.imageIntro.alt;
   const category = post.categoriePrincipale || 'Article';
   
   return (
@@ -27,14 +28,14 @@ export default function HeroArticle({ post, className = '' }: HeroArticleProps) 
       {/* Image d'introduction */}
       <HeroBackground 
         imageSrc={imageSrc}
-        imageAlt={post.titre}
+        imageAlt={imageAlt}
       />
       
       {/* Metadonnées, Titre et liens vers le post */}
       <HeroContent
         category={category}
         title={post.titre}
-        date={post.date}
+        color='oyster'
         slug={post.slug}
       />
     </section>

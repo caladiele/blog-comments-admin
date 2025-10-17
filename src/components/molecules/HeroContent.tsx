@@ -11,7 +11,6 @@ import '@/app/styles/hero-content.css'
 interface HeroContentProps {
   category: string;
   title: string;
-  date: string;
   slug: string;
   className?: string;
   color?: string;
@@ -20,7 +19,6 @@ interface HeroContentProps {
 export default function HeroContent({ 
   category, 
   title, 
-  date, 
   slug,
   color,
   className = ''
@@ -32,7 +30,7 @@ export default function HeroContent({
         <ArticleCategory category={category} />
         
         {/* Titre principal */}
-        <ArticleTitle title={title} href={`/articles/${slug}`} color="oyster" as="h1" />
+        <ArticleTitle title={title} href={`/articles/${slug}`} color={color || ''} as="h1" />
         
         {/* Bouton CTA */}
         <WabisabiButton href={`/articles/${slug}`} className='wabisabi-button wabisabi-oyster' />

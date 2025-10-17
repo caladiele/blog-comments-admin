@@ -1,0 +1,42 @@
+/* src/app/styles/recipe-page.css */
+@import url("variables.css");
+@import url("reset.css");
+
+[data-theme="dark"] .recipe-page {
+  background: #282624;
+}
+
+.recipe-page {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--backgroundLight);
+}
+
+
+.recipe-content-wrapper {
+  width: 100%;
+  padding: 48px 20px;
+}
+
+.recipe-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Tablette */
+@media (min-width: 640px) {
+  .recipe-content-wrapper {
+    padding: 64px 48px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .recipe-content-wrapper {
+    padding: 80px 0;
+  }
+  
+  .recipe-content {
+    max-width: 800px;
+  }
+}
