@@ -1,0 +1,187 @@
+/* src/app/styles/collapsible-section.css */
+
+/* === BASE MOBILE === */
+.collapsible-section {
+  width: 100%;
+  border-bottom: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+}
+
+/* Header (cliquable) */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  
+  padding: 24px 20px;
+  
+  cursor: pointer;
+  user-select: none;
+  
+  transition: background-color 0.2s ease;
+  
+  /* Supprime le tap highlight sur mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.section-header:hover {
+  background: var(--section-hover-bg, rgba(0, 0, 0, 0.02));
+}
+
+.section-header:active {
+  background: var(--section-active-bg, rgba(0, 0, 0, 0.04));
+}
+
+.section-header:focus-visible {
+  outline: 2px solid var(--focus-color, #000);
+  outline-offset: -2px;
+}
+
+/* Titre */
+.section-title {
+  font-family: voyage, serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+/* Contenu collapsible */
+.section-content {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: max-height;
+}
+
+.section-content.content-closed {
+  max-height: 0 !important;
+}
+
+.section-content.content-open {
+  /* max-height définie via inline style */
+}
+
+/* Inner wrapper pour padding */
+.section-content-inner {
+  padding: 0 20px 32px 20px;
+  animation: fadeInContent 0.3s ease 0.1s backwards;
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Masquer l'animation si fermé */
+.section-content.content-closed .section-content-inner {
+  animation: none;
+}
+
+/* === TABLETTE (640px+) === */
+@media (min-width: 640px) {
+  .section-header {
+    padding: 28px 48px;
+    gap: 20px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+  }
+  
+  .section-content-inner {
+    padding: 0 48px 40px 48px;
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  .collapsible-section {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    padding: 32px 0;
+    gap: 24px;
+  }
+  
+  .section-title {
+    font-size: 22px;
+  }
+  
+  .section-content-inner {
+    padding: 0 0 48px 0;
+  }
+}
+
+/* === LARGE DESKTOP (1440px+) === */
+@media (min-width: 1440px) {
+  .collapsible-section {
+    max-width: 900px;
+  }
+  
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+/* === THÈME SOMBRE === */
+@media (prefers-color-scheme: dark) {
+  .collapsible-section {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .section-header:hover {
+    background: rgba(255, 255, 255, 0.03);
+  }
+  
+  .section-header:active {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* === IMPRESSION (forcer toutes les sections ouvertes) === */
+@media print {
+  .collapsible-section {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+  
+  .section-header {
+    padding: 15px 0 10px 0;
+    cursor: default;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .section-header:hover {
+    background: none;
+  }
+  
+  .section-title {
+    font-size: 14pt;
+    font-weight: 500;
+  }
+  
+  /* Forcer le contenu visible */
+  .section-content {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .section-content-inner {
+    padding: 15px 0 20px 0;
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

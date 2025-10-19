@@ -1,0 +1,93 @@
+/* src/app/styles/collapse-chevron.css */
+
+.collapse-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  
+  color: var(--text-secondary);
+  cursor: pointer;
+  
+  transition: all 0.25s ease;
+  
+  /* Supprime le tap highlight sur mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.collapse-chevron:hover {
+  background: var(--chevron-hover-bg, rgba(0, 0, 0, 0.04));
+  color: var(--text-primary);
+}
+
+.collapse-chevron:active {
+  transform: scale(0.95);
+}
+
+.collapse-chevron:focus-visible {
+  outline: 2px solid var(--focus-color, #000);
+  outline-offset: 2px;
+}
+
+/* Icône chevron */
+.chevron-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* État ouvert : rotation 180° */
+.collapse-chevron.chevron-open .chevron-icon {
+  transform: rotate(180deg);
+}
+
+/* État fermé : rotation 0° */
+.collapse-chevron.chevron-closed .chevron-icon {
+  transform: rotate(0deg);
+}
+
+/* === TABLETTE (640px+) === */
+@media (min-width: 640px) {
+  .collapse-chevron {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .chevron-icon {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  .collapse-chevron {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .chevron-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* === THÈME SOMBRE === */
+@media (prefers-color-scheme: dark) {
+  .collapse-chevron:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* === IMPRESSION (masquer le chevron) === */
+@media print {
+  .collapse-chevron {
+    display: none;
+  }
+}

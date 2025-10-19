@@ -6,6 +6,7 @@ import matter from 'gray-matter';
 export interface RecipeData {
   titre: string;
   slug: string;
+  date: string;
   categoriePrincipale: string;
   sousCategorie?: string;
   tagTemps: string;
@@ -18,19 +19,35 @@ export interface RecipeData {
   };
 }
 
+export interface IngredientSection {
+  section: string;  // "" si pas de sous-section, sinon nom de la section
+  items: string[];
+}
+
+export interface InstructionSection {
+  section: string;  // "" si pas de sous-section, sinon nom de la section
+  steps: string[];
+}
+
 export interface RecipeFullData extends RecipeData {
   content: string;
-  date: string;
   tagMisEnAvant?: string;
-  // Autres métadonnées complètes
   auteur?: string;
   derniereModification?: string;
+  description?: string;
   imagesArticle?: Array<{
     src: string;
     alt: string;
     credit?: string;
     couleurDominante?: string;
   }>;
+  cookTime?: string;
+  prepTime: string;
+  totalTime: string;
+  yield?: string;
+  ingredients: IngredientSection[];
+  instructions: InstructionSection[]; 
+
 }
 
 // Fonction récursive pour trouver tous les fichiers .md
@@ -104,6 +121,11 @@ export async function getRecipeBySlug(slug: string): Promise<RecipeFullData | nu
           auteur: data.auteur,
           derniereModification: data.derniereModification,
           imagesArticle: data.imagesArticle,
+          prepTime: data.prepTime,
+          cookTime: data.cookTime,
+          totalTime: data.totalTime,
+          ingredients: data.ingredients,
+          instructions: data.instructions,
           content
         };
       }

@@ -2,7 +2,9 @@
 
 @import url("titre-surlignage.css");
 
-/* === DARK MODE === */
+/* 
+  === DARK MODE === 
+*/
 
 [data-theme="dark"] {
   .article-title {
@@ -14,7 +16,9 @@
   }
 } 
 
-/* === MOBILE FIRST === */
+/* 
+  === MOBILE FIRST === 
+*/
 
 .article-link {
   max-width: 512px;
@@ -50,7 +54,9 @@ h2.article-title {
 
 
 
-/* === RESPONSIVE === */
+/* 
+  === RESPONSIVE === 
+*/
 
 
 /* Tablette */
@@ -66,7 +72,9 @@ h2.article-title {
   }
 }
 
-/* === EFFETS === */
+/* 
+  === EFFETS === 
+*/
 
 /* Effet de survol subtil si le titre est cliquable */
 .article-title--clickable {

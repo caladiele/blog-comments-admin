@@ -1,0 +1,254 @@
+/* src/app/styles/instructions-list.css */
+
+/* === BASE MOBILE === */
+.instructions-list-wrapper {
+  width: 100%;
+}
+
+/* === SECTION D'INSTRUCTIONS === */
+.instruction-section {
+  width: 100%;
+}
+
+/* Espacer les sections multiples */
+.instruction-section.has-section-title + .instruction-section.has-section-title {
+  margin-top: 40px;
+}
+
+/* Titre de sous-section */
+.instruction-section-title {
+  font-family: voyage, serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin: 0 0 20px 0;
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+  
+  /* Animation d'apparition */
+  opacity: 0;
+  animation: fadeInDown 0.4s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
+/* Liste ordonnée */
+.instructions-list {
+  list-style: none;
+  counter-reset: none; /* Utilise la numérotation native de <ol> */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Ajuster l'espacement si section nommée */
+.instruction-section.has-section-title .instructions-list {
+  padding-left: 0;
+}
+
+/* === ÉTAPE D'INSTRUCTION === */
+.instruction-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Numéro de l'étape */
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  
+  font-family: voyage, serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-secondary);
+  
+  background: var(--step-number-bg, rgba(0, 0, 0, 0.04));
+  border-radius: 50%;
+  
+  flex-shrink: 0;
+  
+  transition: all 0.3s ease;
+}
+
+/* Contenu de l'étape */
+.step-content {
+  flex: 1;
+  padding-top: 6px;
+}
+
+.step-content span {
+  font-family: 'hkRegular', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+  display: block;
+}
+
+/* Hover sur étape (desktop) */
+@media (hover: hover) {
+  .instruction-step:hover .step-number {
+    background: var(--step-number-hover-bg, rgba(139, 115, 85, 0.15));
+    color: var(--text-primary);
+    transform: scale(1.1);
+  }
+}
+
+/* === TABLETTE (640px+) === */
+@media (min-width: 640px) {
+  .instruction-section.has-section-title + .instruction-section.has-section-title {
+    margin-top: 48px;
+  }
+  
+  .instruction-section-title {
+    font-size: 17px;
+    margin-bottom: 24px;
+  }
+  
+  .instructions-list {
+    gap: 28px;
+  }
+  
+  .instruction-step {
+    gap: 18px;
+  }
+  
+  .step-number {
+    min-width: 36px;
+    height: 36px;
+    font-size: 19px;
+  }
+  
+  .step-content {
+    padding-top: 7px;
+  }
+  
+  .step-content span {
+    font-size: 16px;
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  .instruction-section.has-section-title + .instruction-section.has-section-title {
+    margin-top: 56px;
+  }
+  
+  .instruction-section-title {
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+  
+  .instructions-list {
+    gap: 32px;
+  }
+  
+  .instruction-step {
+    gap: 20px;
+  }
+  
+  .step-number {
+    min-width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+  
+  .step-content {
+    padding-top: 8px;
+  }
+  
+  .step-content span {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+}
+
+/* === THÈME SOMBRE === */
+@media (prefers-color-scheme: dark) {
+  .step-number {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  .instruction-step:hover .step-number {
+    background: rgba(184, 153, 104, 0.2);
+  }
+}
+
+/* === IMPRESSION === */
+@media print {
+  .instructions-list-wrapper {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  .instruction-section + .instruction-section {
+    margin-top: 20px;
+  }
+  
+  .instruction-section-title {
+    font-size: 12pt;
+    margin-bottom: 12px;
+    opacity: 1 !important;
+    animation: none !important;
+    page-break-after: avoid;
+  }
+  
+  .instructions-list {
+    gap: 15px;
+  }
+  
+  .instruction-step {
+    gap: 12px;
+    opacity: 1 !important;
+    animation: none !important;
+    page-break-inside: avoid;
+  }
+  
+  .step-number {
+    min-width: 28px;
+    height: 28px;
+    font-size: 12pt;
+    background: #f0f0f0 !important;
+    border: 1px solid #ccc;
+  }
+  
+  .step-content {
+    padding-top: 5px;
+  }
+  
+  .step-content span {
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+}

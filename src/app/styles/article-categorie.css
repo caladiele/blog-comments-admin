@@ -1,6 +1,8 @@
 /* src/app/styles/article-categorie.css */
 
-/* === DARK MODE === */
+/* 
+  === DARK MODE === 
+*/
 
 [data-theme="dark"] {
 
@@ -11,7 +13,9 @@
 
 }
   
-/* === MOBILE FIRST === */
+/* 
+  === MOBILE FIRST === 
+*/
 
 .article-category {
   font-family: 'BodonyModaMediumItalic', serif;
@@ -34,7 +38,9 @@
   margin: 0; /* Suppression de la marge entourant les catégories dans la section recettes */
 }
 
-/* === RESPONSIVE === */
+/* 
+  === RESPONSIVE === 
+*/
 
 /* Tablette */
 @media (min-width: 640px) {

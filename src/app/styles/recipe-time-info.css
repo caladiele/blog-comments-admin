@@ -1,0 +1,71 @@
+/* src/app/styles/recipe-time-info.css */
+
+/* === BASE MOBILE === */
+.recipe-time-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  
+  font-family: 'hkRegular', sans-serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.time-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.time-label {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.time-value {
+  font-weight: 500;
+  color: var(--text-primary);
+  opacity: 0.9;
+}
+
+.time-separator {
+  opacity: 0.3;
+  font-size: 14px;
+  line-height: 1;
+  display: none; /* Masqué sur mobile */
+}
+
+/* === TABLETTE (640px+) === */
+@media (min-width: 640px) {
+  .recipe-time-info {
+    font-size: 14px;
+    gap: 12px 16px;
+  }
+  
+  .time-separator {
+    display: inline; /* Visible sur tablette+ */
+  }
+  
+  .time-item {
+    gap: 5px;
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  .recipe-time-info {
+    font-size: 15px;
+    gap: 16px 20px;
+  }
+  
+  .time-item {
+    gap: 6px;
+  }
+  
+  .time-separator {
+    margin: 0 4px;
+  }
+}

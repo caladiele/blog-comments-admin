@@ -1,8 +1,11 @@
 /* src/app/styles/breadcrumb.css */
 
-/** === DARK MODE === */
+/* 
+  === DARK MODE === 
+*/
 
 [data-theme="dark"] {
+  /* TODO */
   .breadcrumb-list::after {
     background: linear-gradient(to right, 
     rgba(227, 214, 191, 0.3) 0%, 
@@ -27,7 +30,9 @@
 } 
 
 
-/* === MOBILE FIRST === */
+/* 
+  === MOBILE FIRST === 
+*/
 
 .breadcrumb {
   width: 100%;
@@ -157,7 +162,9 @@
 }
 
 
-/* === RESPONSIVE === */
+/* 
+  === RESPONSIVE === 
+*/
 
 /* Tablette */
 @media (min-width: 640px) {
@@ -204,7 +211,9 @@
 }
 
 
-/** === ANIMATIONS === */
+/* 
+  === ANIMATIONS === 
+*/
 
 /* Animation du trait qui se dessine */
 @keyframes drawBreadcrumbLine {
@@ -227,7 +236,9 @@
   }
 }
 
-/** === ACCESSIBILITE === */
+/* 
+  === ACCESSIBILITE === 
+*/
 
 @media (prefers-reduced-motion: reduce) {
   .breadcrumb-list::after,

@@ -4,6 +4,7 @@ import { getRecipeBySlug, getAllRecipeSlugs } from '@/lib/recipes';
 import Header from '@/components/organisms/Header'
 import Breadcrumb from '@/components/atoms/Breadcrumb';
 import RecipeHero from '@/components/molecules/RecipeHero';
+import RecipeDetailsSection from '@/components/organisms/RecipeDetailSection';
 import '@/app/styles/recipe-page.css';
 
 // Génération statique des pages
@@ -65,7 +66,21 @@ export default async function RecipePage({ params }: { params: { slug: string } 
       <div className="recipe-content-wrapper">
         <div className="recipe-content">
           {/* Placeholder pour le moment */}
-          <p>Contenu de la recette à venir...</p>
+          <RecipeDetailsSection 
+            titre={recipe.titre}
+            slug={recipe.slug}
+            totalTime={recipe.totalTime}
+            prepTime={recipe.prepTime}
+            cookTime={recipe.cookTime || '0'}
+            date={recipe.date}
+            description={recipe.description || ''}
+            auteur={recipe.auteur || ''}
+            portions={4}
+            ingredients={recipe.ingredients}
+            instructions={recipe.instructions}
+            image={recipe.imageIntro.src}
+            sousCategorie={recipe.sousCategorie || ''}
+          />
         </div>
       </div>
     </main>

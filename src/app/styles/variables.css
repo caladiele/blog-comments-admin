@@ -37,12 +37,14 @@
     --margin-s: 24px;
     --margin-m: 32px;
     --margin-l: 40px;
+    --margin-xl: 48px;
 
     --padding-xxs: var(--margin-xxs);
     --padding-xs: var(--margin-xs);
     --padding-s: var(--margin-s);
     --padding-m: var(--margin-m);
     --padding-l: var(--margin-l);
+    --padding-xl: var(--margin-xl);
 
     --gap-xxxs: 4px;
     --gap-xxs: var(--margin-xxs);

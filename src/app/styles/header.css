@@ -2,10 +2,10 @@
 
 :root {
     --header-height: 48px;
-    --header-padding-x: 48px;
-    --header-padding-y: 24px;
-    --header-padding-y-large: 40px;
-    --header-bg: #F0EDE7;
+    --header-padding-x: var(--padding-xl);
+    --header-padding-y: var(--padding-s);
+    --header-padding-y-large: var(--padding-l);
+    --header-bg: var(--background-light);
     --header-bg-dark-fall: #282624;
     --header-bg-dark-winter: #161B22;
     --header-text: #4F4F4F;

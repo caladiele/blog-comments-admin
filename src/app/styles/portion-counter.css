@@ -1,0 +1,178 @@
+/* src/app/styles/portion-counter.css */
+
+/* === BASE MOBILE === */
+.portion-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  
+  font-family: 'hkRegular', sans-serif;
+  color: var(--text-secondary);
+}
+
+.portion-label {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.7;
+  letter-spacing: 0.01em;
+}
+
+.portion-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Boutons +/- */
+.portion-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  
+  background: transparent;
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.15));
+  border-radius: 50%;
+  
+  color: var(--text-primary);
+  cursor: pointer;
+  
+  transition: all 0.2s ease;
+  
+  /* Supprime le tap highlight sur mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.portion-button:hover:not(:disabled) {
+  background: var(--button-hover-bg, rgba(0, 0, 0, 0.05));
+  border-color: var(--border-hover, rgba(0, 0, 0, 0.25));
+  transform: scale(1.05);
+}
+
+.portion-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.portion-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.portion-button:focus-visible {
+  outline: 2px solid var(--focus-color, #000);
+  outline-offset: 2px;
+}
+
+/* Icônes SVG */
+.portion-button svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Valeur */
+.portion-value {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  min-width: 24px;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Unité */
+.portion-unit {
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.7;
+  letter-spacing: 0.01em;
+}
+
+/* === TABLETTE (640px+) === */
+@media (min-width: 640px) {
+  .portion-counter {
+    gap: 14px;
+  }
+  
+  .portion-label,
+  .portion-unit {
+    font-size: 14px;
+  }
+  
+  .portion-button {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .portion-button svg {
+    width: 15px;
+    height: 15px;
+  }
+  
+  .portion-value {
+    font-size: 17px;
+    min-width: 26px;
+  }
+  
+  .portion-controls {
+    gap: 10px;
+  }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+  .portion-counter {
+    gap: 16px;
+  }
+  
+  .portion-label,
+  .portion-unit {
+    font-size: 15px;
+  }
+  
+  .portion-button {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .portion-button svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .portion-value {
+    font-size: 18px;
+    min-width: 28px;
+  }
+  
+  .portion-controls {
+    gap: 12px;
+  }
+}
+
+/* === THÈME SOMBRE === */
+@media (prefers-color-scheme: dark) {
+  .portion-button {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .portion-button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* === ANIMATIONS === */
+@keyframes popValue {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Animation sur changement de valeur (optionnel) */
+.portion-value {
+  animation: popValue 0.3s ease;
+}
