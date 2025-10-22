@@ -1,9 +1,42 @@
 // src/components/atoms/CollapseChevron.tsx
+import { MouseEvent } from 'react';
 import '@/app/styles/collapse-chevron.css';
+/**
+ * @component CollapseChevron
+ * @description
+ * Bouton chevron animé pour sections collapsibles (accordéons, dropdowns).
+ * Le chevron effectue une rotation de 180° selon l'état ouvert/fermé.
+ * Conforme WCAG AA avec support aria-expanded.
+ *
+ * @example
+ * ```tsx
+ * <CollapseChevron 
+ *   isOpen={isExpanded} 
+ *   onClick={(e) => setIsExpanded(!isExpanded)}
+ *   ariaLabel="Ouvrir/Fermer les ingrédients"
+ * />
+ * ```
+ *
+ * @param {CollapseChevronProps} props - Component props
+ * @param {boolean} props.isOpen - État de la section (ouvert/fermé)
+ * @param {(e: MouseEvent<HTMLButtonElement>) => void} props.onClick - Callback au clic
+ * @param {string} [props.ariaLabel] - Label accessible (défaut: "Ouvrir/Fermer la section")
+ *
+ * @returns {JSX.Element} Bouton chevron accessible et animé
+ *
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/accordion/}
+ */
 
+/**
+ * Props pour le composant CollapseChevron
+ * @interface CollapseChevronProps
+ */
 interface CollapseChevronProps {
+  /** État ouvert (true) ou fermé (false) de la section */
   isOpen: boolean;
-  onClick: () => void;
+  /** Gestionnaire d'événement de clic */
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  /** Label accessible pour lecteurs d'écran */
   ariaLabel?: string;
 }
 

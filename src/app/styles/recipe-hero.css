@@ -2,14 +2,13 @@
 
 /* === BASE MOBILE === */
 .recipe-hero {
+  grid-column: 2;
   position: relative;
   width: 100%;
-  grid-column: 1/-1;
   display: grid;
   grid-template-rows: auto;
   isolation: isolate;
   min-height: 80vh;
-  grid-template-columns: 24px 1fr 24px;
 }
 
 /* Image */
@@ -125,7 +124,7 @@
     min-height: auto;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 60px 64px 60px;
     grid-template-columns: 1fr 640px 1fr;
   }
   

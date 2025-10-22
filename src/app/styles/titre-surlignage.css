@@ -2,7 +2,7 @@
 
 /* === DARK MODE === */
 
-[data-theme="dark"] .oyster, [data-theme="dark"]  .silentWhite {
+[data-theme="dark"] .color-oyster, [data-theme="dark"]  .color-silentWhite {
     background: linear-gradient(to top, hsla(42, 58%, 89%, 0.3) 0%,hsla(42, 58%, 89%, 0.2) 30%, hsla(30, 5%, 15%, 0) 40%);
 }
 
@@ -17,22 +17,22 @@
   word-break: break-word;    /* pour forcer les retours si besoin */
 }
 
-.oyster {
+.color-oyster {
   background: linear-gradient(to top, hsla(33, 38%, 82%, 0.4) 0%,hsla(33, 38%, 82%, 0.3) 30%, hsla(40, 23%, 92%, 0) 40%);
 }
 
-.silentWhite {
+.color-silentWhite {
      background: linear-gradient(to top, #E5E7E4 0%, #E5E7E4 30%, #FAFAFA 40%); 
 }
 
-.solitude {
+.color-solitude {
     background: linear-gradient(to top, #E8ECF0 0%, #F5F5F5 30%); 
 }
 
-.frostyMorning {
+.color-frostyMorning {
     background: linear-gradient(to top, #F0E7E7 0%, #F5F5F5 30%); 
 }
 
-.frostyMorningAlt {
+.color-frostyMorningAlt {
     background: linear-gradient(to top, #F0E7E7 0%, #FAFAFA 30%); 
 }

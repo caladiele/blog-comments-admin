@@ -35,7 +35,7 @@ export default function HeroArticle({ post, className = '' }: HeroArticleProps) 
       <HeroContent
         category={category}
         title={post.titre}
-        color='oyster'
+        color='color-oyster'
         slug={post.slug}
       />
     </section>

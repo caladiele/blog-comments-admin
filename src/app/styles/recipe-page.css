@@ -2,8 +2,14 @@
 @import url("variables.css");
 @import url("reset.css");
 
-[data-theme="dark"] .recipe-page {
-  background: #282624;
+[data-theme="dark"] {
+  .recipe-page  {
+    background: hsl(30, 5%, 15%);
+  }
+
+  .recipe-content-wrapper {
+    background-color: var(--background-dark--iridium);
+  }
 }
 
 .recipe-page {
@@ -12,19 +18,37 @@
   background: var(--background-light);
 }
 
+.article-wrapper {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 24px 1fr 24px;
+  grid-row-gap: 40px;
+}
+
 
 .recipe-content-wrapper {
   width: 100%;
-  padding: 48px 20px;
+  padding: 48px 0;
+  background-color: var( --background-light--drWhite);
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
 }
 
 .recipe-content {
-  max-width: 720px;
+  isolation: isolate;
   margin: 0 auto;
+}
+
+.recipe-details-section {
+
 }
 
 /* Tablette */
 @media (min-width: 640px) {
+  .article-wrapper {
+    grid-column: 2;
+  }
   .recipe-content-wrapper {
     padding: 64px 48px;
   }
@@ -33,10 +57,117 @@
 /* Desktop */
 @media (min-width: 1024px) {
   .recipe-content-wrapper {
-    padding: 80px 0;
+    padding: 64px 0;
+    grid-template-columns: 1fr 960px 1fr;
   }
   
   .recipe-content {
     max-width: 800px;
+  }
+}
+
+/* 
+  === IMPRESSION ===
+*/
+
+/* src/app/styles/recipe-page.css - À ajouter */
+
+/* === STYLES D'IMPRESSION === */
+@media print {
+  /* Masquer éléments non essentiels */
+  header.site-header,
+  .navigation-overlay,
+  .breadcrumb,
+  .recipe-action-button,
+  .recipes-cta,
+  footer {
+    display: none !important;
+  }
+  
+  /* Optimiser la page */
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  /* Hero simplifié */
+  .recipe-hero {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  .recipe-hero-content {
+    background: none !important;
+    padding: 20px 0 !important;
+  }
+  
+  .recipe-hero-title {
+    font-size: 24pt !important;
+    margin-bottom: 10px;
+  }
+  
+  /* Image en noir et blanc (économie d'encre) */
+  .recipe-hero-image img,
+  .hero-image {
+    filter: grayscale(100%);
+    -webkit-print-color-adjust: economy;
+    print-color-adjust: economy;
+  }
+  
+  /* Sections */
+  .collapsible-section {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  .section-header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  /* Forcer toutes les sections ouvertes */
+  .section-content {
+    display: block !important;
+    max-height: none !important;
+  }
+  
+  /* Liste d'ingrédients */
+  .ingredients-list {
+    margin: 15px 0;
+  }
+  
+  .ingredient-item {
+    page-break-inside: avoid;
+    margin-bottom: 5px;
+  }
+  
+  /* Instructions */
+  .instruction-step {
+    page-break-inside: avoid;
+    margin-bottom: 15px;
+  }
+  
+  /* Éviter les coupures */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  
+  /* Ajouter URL en bas de page */
+  .recipe-page::after {
+    content: "Recette disponible sur : " attr(data-url);
+    display: block;
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    font-size: 10pt;
+    color: #666;
+  }
+  
+  /* Marges de page */
+  @page {
+    margin: 2cm;
   }
 }

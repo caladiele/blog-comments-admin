@@ -6,14 +6,14 @@
 
 [data-theme="dark"] { 
 
-    .wabisabi-oyster .bouton-wabisabi-path,
-    .wabisabi-silentWhite .bouton-wabisabi-path {
+    .wabisabi-color-oyster .bouton-wabisabi-path,
+    .wabisabi-color-silentWhite .bouton-wabisabi-path {
         stroke: var(--background-light);
     }
-    .wabisabi-oyster .bouton-wabisabi-fill {
+    .wabisabi-color-oyster .bouton-wabisabi-fill {
         fill: hsla(42, 58%, 89%, 0.68);     
     }
-    .wabisabi-silentWhite .bouton-wabisabi-fill {
+    .wabisabi-color-silentWhite .bouton-wabisabi-fill {
         fill: hsla(42, 58%, 89%, 0.3);     
     }
     .bouton-texte {
@@ -31,21 +31,6 @@
     isolation: isolate;
 }
 
-.wabisabi-oyster .bouton-wabisabi-path,
-.wabisabi-silentWhite .bouton-wabisabi-path {
-    stroke: var(--text-color--light-mode);
-}
-
-.wabisabi-oyster .bouton-wabisabi-fill {
-    fill: hsla(33, 38%, 82%, 0.68);
-}
-
-.wabisabi-silentWhite .bouton-wabisabi-fill {
-    fill: hsla(100, 6%, 90%, 1);
-}
-
-
-
 .bouton-wabisabi-path {
     position: absolute;
     top: 0;
@@ -53,6 +38,7 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+    fill: none;
 }
 
 
@@ -65,6 +51,23 @@
     opacity: 0.3;
     z-index: 1;
 }
+
+.wabisabi-color-oyster .bouton-wabisabi-path,
+.wabisabi-color-silentWhite .bouton-wabisabi-path {
+    stroke: var(--text-color--light-mode);
+}
+
+.wabisabi-color-oyster .bouton-wabisabi-fill {
+    fill: hsla(33, 38%, 82%, 0.68);
+}
+
+.wabisabi-color-silentWhite .bouton-wabisabi-fill {
+    fill: hsla(100, 6%, 90%, 1);
+}
+
+
+
+
 
 .bouton-texte {
     position: absolute;
@@ -105,6 +108,37 @@
         top: 36px;
         left: -55px;
     }
+}
+
+/* === ACCESSIBILITÉ === */
+.bouton-section:focus-visible {
+  outline: 3px solid var(--focus-color, currentColor);
+  outline-offset: 4px;
+  border-radius: 64px; /* Suivre la forme organique */
+}
+
+/* === INTERACTIONS === */
+.bouton-section:hover .bouton-wabisabi-fill {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.bouton-section:hover .bouton-texte {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease;
+}
+
+.bouton-section:active {
+  transform: scale(0.98);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  .bouton-section,
+  .bouton-section:hover .bouton-texte {
+    transform: none;
+    transition: none;
+  }
 }
 
 /** === ANIMATIONS ET EFFETS === **/

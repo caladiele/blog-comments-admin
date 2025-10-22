@@ -1,7 +1,7 @@
 // src/components/organisms/CollapsibleSection.tsx
 'use client';
 
-import { useState, useRef, useEffect, ReactNode } from 'react';
+import { useState, useRef, useEffect, ReactNode, MouseEvent } from 'react';
 import CollapseChevron from '@/components/atoms/CollapseChevron';
 import '@/app/styles/collapsible-section.css';
 
@@ -34,14 +34,28 @@ export default function CollapsibleSection({
   }, [children]);
 
   // Recalculer la hauteur si le contenu change (ex: ajustement des portions)
+    // Recalculer la hauteur quand le contenu change (ajustement portions)
   useEffect(() => {
     if (isOpen && contentRef.current) {
-      setContentHeight(contentRef.current.scrollHeight);
+      // Petit délai pour laisser le DOM se mettre à jour
+      const timer = setTimeout(() => {
+        if (contentRef.current) {
+          setContentHeight(contentRef.current.scrollHeight);
+        }
+      }, 50);
+      
+      return () => clearTimeout(timer);
     }
   }, [children, isOpen]);
 
   const toggleSection = () => {
     setIsOpen(!isOpen);
+  };
+
+    // Handler pour le chevron avec stopPropagation
+  const handleChevronClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // Empêche la propagation au header
+    toggleSection();
   };
 
   return (
@@ -64,10 +78,7 @@ export default function CollapsibleSection({
         <h3 className="section-title">{title}</h3>
         <CollapseChevron 
           isOpen={isOpen} 
-          onClick={(e) => {
-            e.stopPropagation(); // Éviter double toggle
-            toggleSection();
-          }}
+          onClick={handleChevronClick}
           ariaLabel={`${isOpen ? 'Fermer' : 'Ouvrir'} la section ${title}`}
         />
       </div>

@@ -12,7 +12,7 @@
   }
   /* TODO */
   .article-title--clickable:hover {
-    color: rgba(227, 214, 191, 0.8);
+    color: var(--color-text-dark-faded, rgba(227, 214, 191, 0.8));
   }
 } 
 
@@ -86,3 +86,11 @@ h2.article-title {
   color: var(--text-color--light-mode--faded);
 }
 
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .article-title {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

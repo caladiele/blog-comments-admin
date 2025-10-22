@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: post.title,
+    title: post.titre,
     description: post.content.substring(0, 160),
   }
 }

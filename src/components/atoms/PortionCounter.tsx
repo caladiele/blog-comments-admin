@@ -1,14 +1,59 @@
 // src/components/atoms/PortionCounter.tsx
+
+/**
+ * @component PortionCounter
+ * @description
+ * Compteur interactif pour ajuster le nombre de portions d'une recette.
+ * Inclut Schema.org itemProp="recipeYield" pour optimisation SEO.
+ * Permet aux utilisateurs d'incrémenter/décrémenter avec validation min/max.
+ *
+ * @example
+ * ```tsx
+ * // Basique (état interne)
+ * <PortionCounter initialValue={4} />
+ * 
+ * // Avec callback pour ajuster ingrédients
+ * <PortionCounter 
+ *   initialValue={4}
+ *   min={2}
+ *   max={16}
+ *   onChange={(newValue) => {
+ *     const ratio = newValue / originalPortions;
+ *     setAdjustedIngredients(adjustAllIngredients(ingredients, ratio));
+ *   }}
+ * />
+ * ```
+ *
+ * @param {PortionCounterProps} props - Component props
+ * @param {number} props.initialValue - Nombre initial de portions
+ * @param {number} [props.min=1] - Nombre minimum de portions
+ * @param {number} [props.max=12] - Nombre maximum de portions
+ * @param {(value: number) => void} [props.onChange] - Callback appelé lors du changement
+ *
+ * @returns {JSX.Element} Compteur de portions accessible avec Schema.org
+ *
+ * @see {@link https://schema.org/recipeYield}
+ * @see {@link https://www.w3.org/WAI/ARIA/apg/patterns/spinbutton/}
+ */
+
 'use client';
 
 import { useState } from 'react';
 import { formatRecipeYield } from '@/lib/recipeHelpers';
 import '@/app/styles/portion-counter.css';
 
+/**
+ * Props pour le composant PortionCounter
+ * @interface PortionCounterProps
+ */
 interface PortionCounterProps {
+  /** Nombre initial de portions à afficher */
   initialValue: number;
+  /** Nombre minimum de portions autorisé (défaut: 1) */
   min?: number;
+  /** Nombre maximum de portions autorisé (défaut: 12) */
   max?: number;
+  /** Callback optionnel appelé avec la nouvelle valeur lors des changements */
   onChange?: (value: number) => void;
 }
 

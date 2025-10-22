@@ -71,7 +71,7 @@ export default function RecipesSection({
 
       {/* Bouton "voir toutes les recettes" */}
     <div className="wabisabi-bouton-container">
-     <WabisabiButton href={`/articles/`} className='wabisabi-button wabisabi-silentWhite' label="nos recettes" />
+     <WabisabiButton href={`/articles/`} className='wabisabi-button wabisabi-color-silentWhite' label="nos recettes" />
     </div>
     </section>
   );

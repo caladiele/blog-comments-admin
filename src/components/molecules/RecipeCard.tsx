@@ -31,9 +31,30 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   // Formater la catégorie pour l'affichage
   const categoryDisplay = sousCategorie || categoriePrincipale;
+  const url = `https://amandebasilic.com/recettes/${slug}`
+  const recipeCardSchema = {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    "@id": url,
+    "mainEntityOfPage": url,
+    "name": titre,
+    "image": imageIntro.src,
+    "recipeCategory": categoryDisplay,
+    "totalTime": tagTemps,
+    "url": url,
+  };
+
   
   return (
-    <article className="recipe-card">
+    <article className="recipe-card"
+      itemScope
+      itemType="https://schema.org/Recipe"
+    >
+       <script
+        id={`recipe-card-schema-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(recipeCardSchema) }}
+      />
         {/* Image */}
       <Link href={`/recettes/${slug}`} className="recipe-card-link">
         <div className="recipe-card-image">
@@ -60,7 +81,7 @@ export default function RecipeCard({
           <ArticleTitle 
             title={titre} 
             href={`/recettes/${slug}`} 
-            color="silentWhite" 
+            color="color-silentWhite" 
             as="h2" 
             hasLink={true}
             className={'article-title--clickable'} 

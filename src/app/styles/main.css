@@ -12,6 +12,7 @@
 .main {
     display: grid;
     grid-template-columns: 24px 1fr 24px;
+    grid-template-rows: auto;
     background-color: var(--header-bg);
     color: var(--text-color--light-mode);
 }

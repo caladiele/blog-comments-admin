@@ -118,7 +118,7 @@
 }
 
 /* === THÈME SOMBRE === */
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
   .recipe-action-button {
     border-color: rgba(255, 255, 255, 0.15);
   }

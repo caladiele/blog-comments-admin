@@ -47,11 +47,14 @@ export default async function RecipePage({ params }: { params: { slug: string } 
 
   return (
     <>
+    {/* Header principal de la page */}
     <Header />
     <div className="divider-container"><div className='divider'></div></div>
+    {/* Contenu principal de la page */}
     <main className="main recipe-page">
       <Breadcrumb items={breadcrumbItems} />
-      
+    {/* Recette */}
+    <article className="article-wrapper" itemScope itemType="https://schema.org/Recipe">
       <RecipeHero
         titre={recipe.titre}
         categorie={recipe.categoriePrincipale}
@@ -80,9 +83,11 @@ export default async function RecipePage({ params }: { params: { slug: string } 
             instructions={recipe.instructions}
             image={recipe.imageIntro.src}
             sousCategorie={recipe.sousCategorie || ''}
+            faq={recipe.faq} 
           />
         </div>
       </div>
+      </article>
     </main>
     </>
   );

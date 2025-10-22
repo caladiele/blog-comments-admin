@@ -12,6 +12,7 @@ export interface RecipeData {
   tagTemps: string;
   tagMisEnAvant?: string;
   tags: string[];
+  typeDePost?: 'recette' | 'article' | 'guide' | 'tutoriel';
   imageIntro: {
     src: string;
     alt: string;
@@ -27,6 +28,11 @@ export interface IngredientSection {
 export interface InstructionSection {
   section: string;  // "" si pas de sous-section, sinon nom de la section
   steps: string[];
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
 }
 
 export interface RecipeFullData extends RecipeData {
@@ -47,7 +53,7 @@ export interface RecipeFullData extends RecipeData {
   yield?: string;
   ingredients: IngredientSection[];
   instructions: InstructionSection[]; 
-
+  faq?: FAQItem[];
 }
 
 // Fonction récursive pour trouver tous les fichiers .md
@@ -126,6 +132,7 @@ export async function getRecipeBySlug(slug: string): Promise<RecipeFullData | nu
           totalTime: data.totalTime,
           ingredients: data.ingredients,
           instructions: data.instructions,
+          faq: data.faq,
           content
         };
       }

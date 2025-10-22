@@ -1,0 +1,33 @@
+/* src/app/styles/faq-list.css */
+
+/**
+ * Styles pour le composant FAQList
+ * Container de la liste de FAQ
+ */
+
+/* === BASE MOBILE === */
+
+/**
+ * Wrapper principal de la liste FAQ
+ */
+.faq-list-wrapper {
+  width: 100%;
+}
+
+/**
+ * Container de la liste
+ * - Pas de padding, géré par les items individuels
+ */
+.faq-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === IMPRESSION === */
+@media print {
+  .faq-list-wrapper {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+}

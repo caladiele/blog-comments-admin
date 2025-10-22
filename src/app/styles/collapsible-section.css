@@ -39,11 +39,10 @@
 
 /* Titre */
 .section-title {
-  font-family: voyage, serif;
-  font-size: 18px;
+  font-family: bodonyModa, serif;
+  font-size: 24px;
   font-weight: 400;
-  font-style: italic;
-  color: var(--text-primary);
+  color: var(--text-color--light-mode);
   margin: 0;
   letter-spacing: 0.02em;
   flex: 1;
@@ -68,6 +67,7 @@
 .section-content-inner {
   padding: 0 20px 32px 20px;
   animation: fadeInContent 0.3s ease 0.1s backwards;
+  font-family: hkRegular, sans-serif;
 }
 
 @keyframes fadeInContent {

@@ -30,9 +30,9 @@ export default function RecipeHero({
 }: RecipeHeroProps) {
 
   return (
-    <article className="recipe-hero">
+    <header className="recipe-hero">
       {/* Image */}
-      <div className="recipe-hero-image">
+      <figure className="recipe-hero-image">
         <Image
           src={imageIntro.src}
           alt={imageIntro.alt}
@@ -45,7 +45,7 @@ export default function RecipeHero({
             objectPosition: 'center'
           }}
         />
-      </div>
+      </figure>
 
       {/* Contenu */}
       <div className="recipe-hero-content">
@@ -53,7 +53,7 @@ export default function RecipeHero({
           {/* Catégorie */}
           <ArticleCategory category={sousCategorie || ''} />
           {/* Titre */}
-          <ArticleTitle title={titre} color="oyster" as="h1" hasLink={false} />
+          <ArticleTitle title={titre} color="color-oyster" as="h1" hasLink={false} />
           {/* Métadonnées */}
           <div className="recipe-hero-meta">
             <RecipeMetaBadge icon="time" label={tagTemps} />
@@ -63,6 +63,6 @@ export default function RecipeHero({
           </div>
         </div>
       </div>
-    </article>
+    </header>
   );
 }

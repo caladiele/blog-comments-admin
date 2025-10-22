@@ -40,39 +40,51 @@ export default function RecipeMetaHeader({
     <div className="recipe-meta-header">
       {/* Titre de la section */}
       <div className="recipe-section-title">
-        <h2>la recette</h2>
+        <svg
+          className="wabisabi-fill"
+          width="128"
+          height="104"
+          aria-hidden="true"
+        >
+          <use href="#wabisabi-shape" />
+        </svg>
+        <p className='recipe-section-title--p'>la recette</p>
       </div>
 
       {/* Nom de la recette */}
-      <div className="recipe-name">
-        <h3 itemProp="name">{titre}</h3>
-      </div>
+
 
       {/* Ligne 1 : Temps + Portions */}
+      {/* <h2 className="recipe-name" itemProp="name">{titre}</h2>  */}
       <div className="recipe-meta-main">
         <RecipeTimeInfo
           total={tempsTotal}
           preparation={tempsPreparation}
           cuisson={tempsCuisson}
         />
-        
+       
+       
         <PortionCounter
           initialValue={portionsInitiales}
           min={1}
           max={12}
           onChange={handlePortionChange}
         />
+
       </div>
 
-      {/* Ligne 2 : Actions */}
-      <div className="recipe-meta-actions">
-        <RecipeActionButton type="print" />
-        <RecipeActionButton 
-          type="share"
-          recipeTitle={titre}
-          recipeUrl={`https://amandebasilic.com/recettes/${slug}`}
-        />
-      </div>
+      {/**
+       * Ligne 2 : Actions 
+       <div className="recipe-meta-actions">
+          <RecipeActionButton type="print" />
+          <RecipeActionButton 
+            type="share"
+            recipeTitle={titre}
+            recipeUrl={`https://amandebasilic.com/recettes/${slug}`}
+          />
+        </div>
+       * */}
+      
     </div>
   );
 }

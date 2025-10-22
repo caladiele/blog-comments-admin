@@ -9,9 +9,9 @@ import IngredientsList from '@/components/molecules/IngredientsList';
 import CollapsibleSection from './CollapsibleSection';
 import { adjustAllIngredients } from '@/lib/recipeHelpers';
 import { adjustIngredientQuantity } from '@/lib/recipeHelpers';
-import { IngredientSection, InstructionSection  } from '@/lib/recipes';
+import { IngredientSection, InstructionSection, FAQItem  } from '@/lib/recipes';
 import InstructionsList from '@/components/molecules/InstructionsList';
-
+import FAQList from '../molecules/FAQList';
 
 interface RecipeDetailsSectionProps {
   // Métadonnées principales
@@ -32,8 +32,9 @@ interface RecipeDetailsSectionProps {
   ingredients: IngredientSection[]; // ← Structure avec sous-sections
   
   // Instructions et FAQ
-  instructions?: InstructionSection[];
-  faq?: Array<{ question: string; answer: string }>;
+  instructions?: InstructionSection[] | string[];
+  faq?: FAQItem[]; // ← Type précis
+
   
   // Catégorisation (pour Schema.org)
   categoriePrincipale?: string;
@@ -47,6 +48,7 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
     props.ingredients
   );
   const [isAdjusted, setIsAdjusted] = useState(false);
+  const [updateKey, setUpdateKey] = useState(0);
   const [portionRatio, setPortionRatio] = useState(1);
 
   const handlePortionChange = (newPortions: number, ratio: number) => {
@@ -54,12 +56,35 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
     
     setAdjustedIngredients(adjusted);
     setIsAdjusted(ratio !== 1);
+    setUpdateKey(prev => prev + 1);
+  };
+
+    // Normaliser les instructions
+  const normalizeInstructions = (
+    instructions?: InstructionSection[] | string[]
+  ): InstructionSection[] => {
+    // Si pas d'instructions
+    if (!instructions || instructions.length === 0) {
+      return [];
+    }
+
+    // Si ancien format (string[])
+    if (typeof instructions[0] === 'string') {
+      return [{
+        section: "",
+        steps: instructions as string[]
+      }];
+    }
+
+    // Nouveau format
+    return instructions as InstructionSection[];
   };
     // Générer le JSON-LD Schema.org
   const generateRecipeSchema = () => {
     // Aplatir tous les ingrédients pour Schema.org
     const allIngredients = props.ingredients.flatMap(section => section.items);
-    const allInstructions = props.instructions.flatMap(section => section.steps);
+    const normalizedInstructions = normalizeInstructions(props.instructions)
+    const allInstructions = normalizedInstructions.flatMap(section => section.steps);
     return {
       "@context": "https://schema.org/",
       "@type": "Recipe",
@@ -87,6 +112,8 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
       "suitableForDiet": "https://schema.org/VeganDiet"
     };
   };
+  console.log(props);
+  const normalizedInstructions = normalizeInstructions(props.instructions);
 
   return (
     <>
@@ -97,7 +124,7 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
       />
       
       {/* Container avec microdata */}
-      <article 
+      <section 
         className="recipe-details-section"
         itemScope 
         itemType="https://schema.org/Recipe"
@@ -117,7 +144,7 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
         portionsInitiales={props.portions}
         onPortionChange={handlePortionChange}
       />
-      <CollapsibleSection title="Ingrédients" defaultOpen={true}>
+      <CollapsibleSection title="Ingrédients" defaultOpen={true}key={`ingredients-${updateKey}`} >
         <IngredientsList 
           ingredients={adjustedIngredients}
           isAdjusted={isAdjusted}
@@ -129,9 +156,19 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
           defaultOpen={true}
           id="section-instructions"
       >
-          <InstructionsList instructions={props.instructions} />
+          <InstructionsList instructions={normalizedInstructions} />
         </CollapsibleSection>
-      </article>
+              {/* Section FAQ */}
+        {props.faq && props.faq.length > 0 && (
+          <CollapsibleSection 
+            title="Questions fréquentes" 
+            defaultOpen={false}
+            id="section-faq"
+          >
+            <FAQList faq={props.faq} />
+          </CollapsibleSection>
+        )}
+      </section>
     </>
   );
 }

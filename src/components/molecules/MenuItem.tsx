@@ -1,17 +1,74 @@
 // src/components/molecules/MenuItem.tsx
+
+/**
+ * @component MenuItem
+ * @description
+ * Composant de menu avec support optionnel de sous-menus déroulants.
+ * Gère l'ouverture/fermeture et la visibilité selon l'état parent.
+ *
+ * @category Components/Molecules
+ * @subcategory Navigation
+ *
+ * @example
+ * // Menu simple avec lien
+ * <MenuItem title="Accueil" href="/" />
+ *
+ * @example
+ * // Menu avec sous-menu
+ * <MenuItem
+ *   title="Catégories"
+ *   hasSubmenu
+ *   onToggle={(isOpen) => console.log(isOpen)}
+ * >
+ *   <MenuItem title="Entrées" href="/entrees" />
+ *   <MenuItem title="Plats" href="/plats" />
+ * </MenuItem>
+ *
+ * @param {MenuItemProps} props - Les propriétés du composant
+ * @param {string} props.title - Texte affiché dans le menu
+ * @param {string} [props.href] - URL de destination (requis si !hasSubmenu)
+ * @param {boolean} [props.hasSubmenu=false] - Active le mode sous-menu avec bouton déroulant
+ * @param {React.ReactNode} [props.children] - Éléments du sous-menu
+ * @param {number} [props.index] - Index du menu (actuellement non utilisé)
+ * @param {'visible'|'active'|'above'|'below'} [props.visibility='visible'] - État de visibilité géré par le parent
+ * @param {boolean} props.shouldReset - Force la fermeture du sous-menu quand true
+ * @param {(isOpen: boolean) => void} [props.onToggle] - Callback appelé lors de l'ouverture/fermeture
+ *
+ * @returns {JSX.Element} Élément de liste <li> contenant soit un bouton (avec sous-menu) soit un lien
+ *
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
+/**
+ * @interface MenuItemProps
+ * @description Propriétés du composant MenuItem
+ */
 interface MenuItemProps {
+  /** Texte affiché dans le menu */
   title: string;
+  /** URL de destination. Requis si hasSubmenu est false */
   href?: string;
+  /** Active le mode sous-menu avec bouton déroulant */
   hasSubmenu?: boolean;
+  /** Éléments du sous-menu (autres MenuItem) */
   children?: React.ReactNode;
+  /** Index du menu dans la liste parent (non utilisé actuellement) */
   index?: number;
+  /**
+   * État de visibilité géré par le composant parent
+   * - 'visible': Menu visible et interactif
+   * - 'active': Menu actif/sélectionné
+   * - 'above': Menu au-dessus de l'élément actif
+   * - 'below': Menu en-dessous de l'élément actif
+  */
   visibility?: 'visible' | 'active' | 'above' | 'below';
+  /** Force la fermeture du sous-menu quand true */
   shouldReset: boolean;
+  /** Callback appelé lors de l'ouverture/fermeture du sous-menu */
   onToggle?: (isOpen: boolean) => void;
 }
 
@@ -25,15 +82,22 @@ export default function MenuItem({
   shouldReset
 }: MenuItemProps) {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   useEffect(() => {
-    // Fermer si un autre menu s'ouvre
-    if (visibility !== 'active' && visibility !== 'visible') {
-      setIsOpen(false);
-    }
-  }, [visibility]);
+     if (shouldReset || (visibility !== 'active' && visibility !== 'visible')) {
+       setIsOpen(false);
+     }
+   }, [visibility, shouldReset]);
+
   
-  
+  /**
+ * Gère l'ouverture/fermeture du sous-menu
+ * @private
+ * @function handleToggle
+ * @description
+ * Inverse l'état d'ouverture du sous-menu et notifie le parent via onToggle.
+ * Ne fait rien si hasSubmenu est false.
+ */
   const handleToggle = () => {
     if (hasSubmenu) {
       const newState = !isOpen;
@@ -42,11 +106,7 @@ export default function MenuItem({
     }
   };
 
-  useEffect(() => {
-    if (shouldReset) {
-      setIsOpen(false);
-    }
-  }, [shouldReset]);
+
   
   const content = (
     <>
@@ -80,6 +140,7 @@ export default function MenuItem({
             className="menu-item-button"
             onClick={handleToggle}
             aria-expanded={isOpen}
+            aria-label={`${title}, ${hasSubmenu ? 'menu déroulant' : ''}`}
           >
             {content}
           </button>

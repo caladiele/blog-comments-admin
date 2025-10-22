@@ -1,13 +1,58 @@
 // src/components/atoms/RecipeActionButton.tsx
+
+/**
+ * @component RecipeActionButton
+ * @description
+ * Bouton d'action multifonction pour recettes (Imprimer / Partager).
+ * 
+ * **Fonctionnalités Partage** :
+ * - Mobile : Web Share API native (partage apps)
+ * - Desktop : Copie du lien dans le presse-papier
+ * - Fallback : execCommand pour navigateurs anciens
+ * 
+ * **Fonctionnalité Impression** :
+ * - Déclenche window.print() pour impression navigateur
+ *
+ * @example
+ * ```tsx
+ * // Bouton Imprimer
+ * <RecipeActionButton type="print" />
+ * 
+ * // Bouton Partager avec URL custom
+ * <RecipeActionButton 
+ *   type="share"
+ *   recipeTitle="Tarte aux fraises"
+ *   recipeUrl="https://amandebasilic.com/recettes/tarte-aux-fraises"
+ * />
+ * ```
+ *
+ * @param {RecipeActionButtonProps} props - Component props
+ * @param {'print' | 'share'} props.type - Type d'action (impression ou partage)
+ * @param {string} [props.recipeTitle] - Titre de la recette (pour partage)
+ * @param {string} [props.recipeUrl] - URL à partager (défaut: URL actuelle)
+ *
+ * @returns {JSX.Element} Bouton d'action accessible avec fallbacks multiples
+ *
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Clipboard}
+ */
+
 'use client';
 
 import { useState } from 'react';
 import '@/app/styles/recipe-action-button.css';
 
+/**
+ * Props pour le composant RecipeActionButton
+ * @interface RecipeActionButtonProps
+ */
 interface RecipeActionButtonProps {
+  /** Type d'action : 'print' pour impression, 'share' pour partage */
   type: 'print' | 'share';
-  recipeTitle?: string; // Pour le titre du partage
-  recipeUrl?: string;   // URL à partager
+  /** Titre de la recette pour le partage (optionnel) */
+  recipeTitle?: string; 
+  /** URL à partager (défaut: window.location.href) */
+  recipeUrl?: string;
 }
 
 export default function RecipeActionButton({ 
@@ -34,7 +79,7 @@ export default function RecipeActionButton({
         await navigator.share(shareData);
       } catch (error) {
         // Utilisateur a annulé ou erreur
-        if ((error as Error).name !== 'AbortError') {
+        if (error instanceof Error && error.name !== 'AbortError') {
           console.error('Erreur de partage:', error);
           fallbackCopyLink();
         }
@@ -47,6 +92,11 @@ export default function RecipeActionButton({
 
   const fallbackCopyLink = async () => {
     const url = recipeUrl || window.location.href;
+
+    // Vérification HTTPS pour l'utilisation de l'API clipboard
+    if (!navigator.clipboard && location.protocol !== 'https:') {
+      console.warn('Clipboard API requiert HTTPS');
+    }
     
     try {
       await navigator.clipboard.writeText(url);
@@ -162,7 +212,6 @@ export default function RecipeActionButton({
         </svg>
       )}
 
-      <span className="action-label">{getLabel()}</span>
     </button>
   );
 }

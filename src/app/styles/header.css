@@ -12,6 +12,7 @@
     --header-text--faded: hsla(240, 6%, 35%, 0.68);
     --menu-background: #89888D;
     --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
@@ -54,13 +55,7 @@
   justify-content: flex-end;
 }
 
-.logo {
-    font-family: voyage, serif;
-    color: var(--header-text);
-    text-decoration: none;
-    font-size: clamp(24px, 3vw, 36px);
-    letter-spacing: 0.02em;
-}
+
 
 /* Theme Toggle */
 .theme-toggle {
@@ -84,6 +79,21 @@
   transform: scale(0.95);
 }
 
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--focus-color, currentColor);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Adapter couleur des icônes aux thèmes */
+[data-theme="light"] .theme-icon {
+  color: var(--header-text, #4F4F4F);
+}
+
+[data-theme="dark"] .theme-icon {
+  color: var(--header-text, #F0EDE7);
+}
+
 .theme-icon {
   width: 24px;
   height: 24px;
@@ -102,6 +112,12 @@
   gap: 8px;
   color: var(--header-text);
   -webkit-tap-highlight-color: transparent;
+}
+
+.menu-button:focus-visible {
+  outline: 2px solid var(--focus-color, currentColor);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .menu-button-text {

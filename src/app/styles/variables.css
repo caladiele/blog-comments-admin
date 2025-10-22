@@ -27,6 +27,9 @@
     --icon-color--light-mode: hsla(110, 5%, 78%,1); 
     --icon-color--dark-mode--fall: hsla(215, 21%, 11%,1);
 
+    /* SVG */
+    --fill-color-silverPhoenix: hsla(232, 25%, 94%, 1);
+
     /* 
         === ESPACEMENTS === 
     */

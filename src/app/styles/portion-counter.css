@@ -4,11 +4,10 @@
 .portion-counter {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
-  
   font-family: 'hkRegular', sans-serif;
-  color: var(--text-secondary);
+  color: var(--text-color--light-mode);
+  margin: 24px 0 0 0;
 }
 
 .portion-label {
@@ -29,12 +28,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   padding: 0;
-  
-  background: transparent;
-  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.15));
+  background: var(--fill-color-silverPhoenix);
   border-radius: 50%;
   
   color: var(--text-primary);
@@ -154,17 +151,22 @@
 }
 
 /* === THÈME SOMBRE === */
-@media (prefers-color-scheme: dark) {
+[data-theme="dark"] {
+
   .portion-button {
     border-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .portion-button:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
 }
+  .portion-button:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.3);
+  }
 
+  .portion-counter {
+      color: var(--background-light);
+  }
+
+}
+  
 /* === ANIMATIONS === */
 @keyframes popValue {
   0% { transform: scale(1); }
@@ -172,7 +174,3 @@
   100% { transform: scale(1); }
 }
 
-/* Animation sur changement de valeur (optionnel) */
-.portion-value {
-  animation: popValue 0.3s ease;
-}
