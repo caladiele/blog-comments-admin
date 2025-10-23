@@ -1,0 +1,253 @@
+/* ============================================
+   Composant Sources - Styles
+   Approche Mobile-First
+   ============================================ */
+
+/**
+ * Conteneur principal de la section sources
+ * Style de base pour mobile (ecrans < 768px)
+ */
+.sources-container {
+  /* Espacement */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+}
+
+/**
+ * En-tete de la section sources
+ */
+.sources-header {
+  /* Flexbox pour alignement icone + titre */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  /* Espacement */
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+
+  /* Bordure separatrice */
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/**
+ * Icone de la section (emoji livre)
+ */
+.sources-icon {
+  /* Taille et affichage */
+  font-size: 1.5rem;
+  line-height: 1;
+
+  /* Evite la selection du texte */
+  user-select: none;
+
+  /* Accessibilite: cache visuellement mais garde dans le DOM */
+  flex-shrink: 0;
+}
+
+/**
+ * Titre de la section
+ */
+.sources-title {
+  /* Typographie */
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.3;
+
+  /* Reset des marges par defaut */
+  margin: 0;
+
+  /* Evite le retour a la ligne indesirable */
+  flex-grow: 1;
+}
+
+/**
+ * Conteneur du contenu markdown
+ */
+.sources-content {
+  /* Typographie */
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #475569;
+}
+
+/**
+ * Style des listes dans le contenu
+ * Cible les ul/ol generes par markdown
+ */
+.sources-content ul,
+.sources-content ol {
+  /* Espacement */
+  margin: 0;
+  padding-left: 1.5rem;
+
+  /* Liste */
+  list-style-position: outside;
+}
+
+.sources-content ul {
+  /* Puce personnalisee pour les listes non ordonnees */
+  list-style-type: disc;
+}
+
+.sources-content ol {
+  /* Numerotation pour les listes ordonnees */
+  list-style-type: decimal;
+}
+
+/**
+ * Style des items de liste
+ */
+.sources-content li {
+  /* Espacement entre les items */
+  margin-bottom: 0.625rem;
+
+  /* Espacement interne pour la lisibilite */
+  padding-left: 0.25rem;
+}
+
+.sources-content li:last-child {
+  /* Supprime la marge du dernier item */
+  margin-bottom: 0;
+}
+
+/**
+ * Style des liens dans le contenu
+ */
+.sources-content a {
+  /* Couleur et decoration */
+  color: #2563eb;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+
+  /* Transition pour les effets hover */
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+
+  /* Poids de police legerement plus fort pour la lisibilite */
+  font-weight: 500;
+}
+
+.sources-content a:hover {
+  /* Couleur plus foncee au survol */
+  color: #1e40af;
+  text-decoration-color: #1e40af;
+}
+
+.sources-content a:focus-visible {
+  /* Indicateur de focus pour l'accessibilite */
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.sources-content a:active {
+  /* Couleur lors du clic */
+  color: #1e3a8a;
+}
+
+/**
+ * Style des paragraphes dans le contenu
+ */
+.sources-content p {
+  margin: 0 0 0.625rem 0;
+}
+
+.sources-content p:last-child {
+  margin-bottom: 0;
+}
+
+/**
+ * Style du texte en gras dans le contenu
+ */
+.sources-content strong {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/**
+ * Style du texte en italique dans le contenu
+ */
+.sources-content em {
+  font-style: italic;
+  color: #64748b;
+}
+
+/* ============================================
+   RESPONSIVE - Tablettes (>= 768px)
+   ============================================ */
+@media (min-width: 768px) {
+  .sources-container {
+    /* Augmentation des espacements pour tablette */
+    padding: 1.5rem 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sources-header {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+  }
+
+  .sources-icon {
+    font-size: 1.75rem;
+  }
+
+  .sources-title {
+    font-size: 1.5rem;
+  }
+
+  .sources-content {
+    font-size: 1rem;
+  }
+
+  .sources-content ul,
+  .sources-content ol {
+    padding-left: 2rem;
+  }
+
+  .sources-content li {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - Desktop (>= 1024px)
+   ============================================ */
+@media (min-width: 1024px) {
+  .sources-container {
+    /* Espacements maximaux pour desktop */
+    padding: 2rem 2.5rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .sources-header {
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sources-icon {
+    font-size: 2rem;
+  }
+
+  .sources-title {
+    font-size: 1.75rem;
+  }
+
+  .sources-content {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  .sources-content li {
+    margin-bottom: 0.875rem;
+  }
+}
+
+/* ============================================
+   MODE SOMBRE (si implementation future)
+   ============================================ */

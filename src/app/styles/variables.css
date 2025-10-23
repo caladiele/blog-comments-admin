@@ -16,6 +16,7 @@
         /* Light Theme */
     --background-light--drWhite: hsla(0, 0%, 98%, 1);
     --background-light--whiteSmoke: hsla(0, 0%, 96%, 1);
+    --background-light--echoGray: hsla(140, 7%, 56%, 1);
         /* Dark Themes */
     --background-dark--iridium: hsla(40, 3%, 23%,1);
 
