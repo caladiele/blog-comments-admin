@@ -45,7 +45,7 @@
 }
 
 h1.article-title {
-  font-size: clamp(1.75rem, 1.0192rem + 2.0513vw, 2.25rem);
+  font-size: var(--step-4);
 }
 
 h2.article-title {

@@ -1,0 +1,45 @@
+.article-summary {
+    display: grid;
+    grid-template-columns: 24px 1fr 24px;
+    background-color: var(--background-light--whiteSmoke);
+    padding-top: 40px;
+}
+
+.article-summary--wrapper {
+    grid-column: 2;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.article-summary--wrapper .recipe-section-title {
+    margin: 60px 0;
+    max-height: 100%;
+}
+
+.article-summary .wabisabi-fill {
+    fill: var(--fill-color-frostyMorning);
+}
+
+.article-summary--title {
+    font-size: var(--step-2);
+    z-index: 1;
+    line-height: 1.7;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.article-summary--list {
+    display: grid;
+    grid-gap: 32px;
+    margin: 54px 0;
+}
+
+.article-summary--list-question {
+    font-size: var(--step-1);
+    margin-bottom: 24px;
+    font-family: bodonyModa, serif;
+}
+
+.article-summary--list-answer {
+    font-size: var(--step-0);
+}

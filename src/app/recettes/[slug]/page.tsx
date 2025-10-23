@@ -1,10 +1,32 @@
 // src/app/recettes/[slug]/page.tsx
+
+/**
+ * @page RecipePage
+ * @description
+ * Page individuelle d'une recette avec intégration complète du contenu MDX.
+ * 
+ * Architecture:
+ * - Hero avec métadonnées et image
+ * - Détails de la recette (temps, ingrédients, instructions)
+ * - Contenu MDX enrichi (contexte, conseils, variations)
+ * - Composants interactifs (calculateur, shopping list, impact environnemental)
+ * 
+ * SEO & Schema.org:
+ * - Métadonnées enrichies pour Google
+ * - JSON-LD pour recettes et articles
+ * - Breadcrumbs structurés
+ * - Images optimisées
+ */
+
 import { notFound } from 'next/navigation';
 import { getRecipeBySlug, getAllRecipeSlugs } from '@/lib/recipes';
 import Header from '@/components/organisms/Header'
 import Breadcrumb from '@/components/atoms/Breadcrumb';
 import RecipeHero from '@/components/molecules/RecipeHero';
 import RecipeDetailsSection from '@/components/organisms/RecipeDetailSection';
+import RecipeMDXContent from '@/components/organisms/RecipeMDXContent';
+import ArticleSummary from '@/components/molecules/ResumeArticle';
+
 import '@/app/styles/recipe-page.css';
 
 // Génération statique des pages
@@ -87,7 +109,16 @@ export default async function RecipePage({ params }: { params: { slug: string } 
           />
         </div>
       </div>
+      {recipe.content && (
+          <RecipeMDXContent
+            content={recipe.content}
+            metadata={recipe}
+          />
+       )}
       </article>
+      {recipe.summaryQAs && recipe.summaryQAs.length > 0 && (
+        <ArticleSummary items={recipe.summaryQAs} />
+      )}
     </main>
     </>
   );

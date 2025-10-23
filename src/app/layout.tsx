@@ -3,6 +3,7 @@ import { SvgDefsProvider } from "@/components/providers/SvgDefsProvider";
 import { ThemeProvider } from '@/hooks/useTheme';
 
 import '@/app/styles/reset.css';
+import '@/app/styles/typographie.css'
 
 /**
  * CONFIGURATION SEO & MÉTADONNÉES GLOBALES

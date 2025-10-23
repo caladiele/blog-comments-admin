@@ -35,6 +35,11 @@ export interface FAQItem {
   answer: string;
 }
 
+export interface QA {
+  question: string;
+  answer: string;
+};
+
 export interface RecipeFullData extends RecipeData {
   content: string;
   tagMisEnAvant?: string;
@@ -54,6 +59,7 @@ export interface RecipeFullData extends RecipeData {
   ingredients: IngredientSection[];
   instructions: InstructionSection[]; 
   faq?: FAQItem[];
+  summaryQAs: QA[];
 }
 
 // Fonction récursive pour trouver tous les fichiers .md
@@ -133,6 +139,7 @@ export async function getRecipeBySlug(slug: string): Promise<RecipeFullData | nu
           ingredients: data.ingredients,
           instructions: data.instructions,
           faq: data.faq,
+          summaryQAs: data.summaryQAs,
           content
         };
       }

@@ -89,7 +89,7 @@
 /* === TABLETTE (640px+) === */
 @media (min-width: 640px) {
   .recipe-meta-header {
-    padding: 48px 48px;
+    padding: 48px 0;
     gap: 28px;
   }
   
@@ -108,7 +108,7 @@
   
   .recipe-meta-main {
     gap: 24px;
-    padding: 24px 0;
+    padding: 24px 48px;
   }
   
   .recipe-meta-actions {
@@ -148,6 +148,11 @@
     justify-content: flex-end;
     gap: 20px;
   }
+}
+@media (min-width: 660px) {
+  .recipe-meta-header .recipe-section-title {
+    margin-bottom: 60px;
+  } 
 }
 
 /* === LARGE DESKTOP (1440px+) === */

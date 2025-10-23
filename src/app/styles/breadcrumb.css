@@ -46,7 +46,10 @@
 */
 
 .breadcrumb {
-  padding: var(--padding-s);
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 24px 1fr 24px;
+  padding-bottom: var(--padding-s);
   background: transparent;
   box-sizing: border-box;
   max-width: 100%;
@@ -59,13 +62,14 @@
   gap: var(--gap-xxs);
   list-style: none;
   margin: 0;
-  padding: 0 0 var(--padding-xs) 0;
+  padding: 0 0 var(--padding-xxs) 0;
   position: relative;
   font-family: 'BodonyModa', serif;
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.03em;
   line-height: 1.6;
+  grid-column: 2;
 }
 
 /* Trait de pinceau sous le breadcrumb */
@@ -185,7 +189,8 @@
 /* Tablette */
 @media (min-width: 640px) {
   .breadcrumb {
-    padding: var(--padding-xs) var(--padding-l);
+    grid-template-columns: 1fr 640px 1fr;
+    padding-bottom: var(--padding-l);
   }
   
   .breadcrumb-list {
@@ -206,7 +211,7 @@
 /* Desktop */
 @media (min-width: 1024px) {
   .breadcrumb {
-    padding: var(--padding-m) 0;
+    padding: var(--padding-s) 0;
     max-width: 640px;
     margin: 0 auto;
   }

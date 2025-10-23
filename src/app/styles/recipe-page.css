@@ -46,11 +46,9 @@
 
 /* Tablette */
 @media (min-width: 640px) {
-  .article-wrapper {
-    grid-column: 2;
-  }
+
   .recipe-content-wrapper {
-    padding: 64px 48px;
+    padding: 64px 0;
   }
 }
 
@@ -62,7 +60,7 @@
   }
   
   .recipe-content {
-    max-width: 800px;
+    max-width: 640px;
   }
 }
 

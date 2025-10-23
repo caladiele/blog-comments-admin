@@ -12,12 +12,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  
   padding: 24px 20px;
-  
   cursor: pointer;
   user-select: none;
-  
   transition: background-color 0.2s ease;
   
   /* Supprime le tap highlight sur mobile */
@@ -40,7 +37,7 @@
 /* Titre */
 .section-title {
   font-family: bodonyModa, serif;
-  font-size: 24px;
+  font-size: var(--step-2);
   font-weight: 400;
   color: var(--text-color--light-mode);
   margin: 0;
@@ -93,10 +90,6 @@
     gap: 20px;
   }
   
-  .section-title {
-    font-size: 20px;
-  }
-  
   .section-content-inner {
     padding: 0 48px 40px 48px;
   }
@@ -113,11 +106,7 @@
     padding: 32px 0;
     gap: 24px;
   }
-  
-  .section-title {
-    font-size: 22px;
-  }
-  
+
   .section-content-inner {
     padding: 0 0 48px 0;
   }
@@ -129,9 +118,6 @@
     max-width: 900px;
   }
   
-  .section-title {
-    font-size: 24px;
-  }
 }
 
 /* === THÈME SOMBRE === */

@@ -15,6 +15,7 @@
     /* Backgrounds secondaires */
         /* Light Theme */
     --background-light--drWhite: hsla(0, 0%, 98%, 1);
+    --background-light--whiteSmoke: hsla(0, 0%, 96%, 1);
         /* Dark Themes */
     --background-dark--iridium: hsla(40, 3%, 23%,1);
 
@@ -29,6 +30,7 @@
 
     /* SVG */
     --fill-color-silverPhoenix: hsla(232, 25%, 94%, 1);
+    --fill-color-frostyMorning: hsl(0, 23%, 92%, 1);
 
     /* 
         === ESPACEMENTS === 

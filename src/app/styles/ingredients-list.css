@@ -21,11 +21,10 @@
   align-items: flex-start;
   gap: 12px;
   font-family: 'hkRegular', sans-serif;
-  font-size: 18px;
+  font-size: var(--step-0);
   line-height: 1.6;
   color: var(--text-primary);
   letter-spacing: 0.01em;
-  
   opacity: 0;
   animation: fadeInUp 0.4s ease forwards;
 }
@@ -42,7 +41,7 @@
 
 .ingredient-section-title {
   font-family: bodonyModa, serif;
-  font-size: 20px;
+  font-size: var(--step-1);
   font-weight: 400;
   color: var(--text-color--light-mode);
   margin-bottom: 24px;
@@ -109,15 +108,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  
   margin-top: 24px;
   padding: 12px 16px;
-  
   font-family: 'hkRegular', sans-serif;
   font-size: 13px;
   line-height: 1.5;
   color: var(--note-text, #6b5744);
-  
   background: var(--note-bg, rgba(139, 115, 85, 0.08));
   border-left: 3px solid var(--note-border, #8b7355);
   border-radius: 0 6px 6px 0;
@@ -149,7 +145,7 @@
   }
   
   .ingredient-item {
-    font-size: 16px;
+    font-size: 18px;
     gap: 14px;
   }
   
@@ -175,7 +171,6 @@
   }
   
   .ingredient-item {
-    font-size: 17px;
     gap: 16px;
   }
   

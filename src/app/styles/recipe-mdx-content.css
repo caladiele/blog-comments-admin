@@ -1,0 +1,561 @@
+/* src/app/styles/recipe-mdx-content.css */
+
+/**
+ * Styles pour le contenu MDX des recettes
+ * 
+ * Design System: Japandi (épuré, chaleureux, enveloppant)
+ * - Couleurs naturelles et douces
+ * - Espacement généreux pour la respiration
+ * - Typographie équilibrée et lisible
+ * - Interactions subtiles
+ * 
+ * UX Focus:
+ * - Lecture contemplative (Elodie)
+ * - Scanabilité rapide (Emma) 
+ * - Accessibilité et confort (Marie)
+ */
+
+/* === VARIABLES DESIGN SYSTEM === */
+:root {
+  /* Couleurs Japandi */
+  --content-bg: #fefefe;
+  --content-text: #2d2926;
+  --content-text-light: #5a5651;
+  --content-text-muted: #8b8681;
+  
+  --content-accent: #c4a484; /* Beige chaleureux */
+  --content-accent-light: #e6d7c3;
+  --content-accent-subtle: rgba(196, 164, 132, 0.1);
+  
+  --content-neutral: #f5f3f0; /* Fond doux */
+  --content-neutral-dark: #e8e5e0;
+  
+  /* Ombres douces */
+  --content-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --content-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.08);
+  
+  /* Rayons arrondis organiques */
+  --content-radius-sm: 6px;
+  --content-radius-md: 12px;
+  --content-radius-lg: 18px;
+  
+  /* Espacement harmonieux */
+  --content-space-xs: 8px;
+  --content-space-sm: 16px;
+  --content-space-md: 24px;
+  --content-space-lg: 32px;
+  --content-space-xl: 48px;
+  --content-space-xxl: 64px;
+}
+
+/* === CONTENEUR PRINCIPAL === */
+.recipe-mdx-content {
+  grid-column: 1/-1;
+}
+
+.recipe-mdx-content__wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--content-space-lg) var(--content-space-md);
+}
+
+.recipe-mdx-content__article {
+  /* Grille typographique fluide */
+  font-family: 'hkRegular', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--text-color--light-mode);
+  
+  /* Espacement entre éléments */
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-space-md);
+}
+
+/* === TYPOGRAPHIE === */
+
+/* Titres H2 - Élégants avec sous-ligne */
+
+.article-content--title-h2 {
+  font-family: bodonyModa, serif;
+  font-size: 26px;
+}
+
+.recipe-content-h2 {
+  position: relative;
+  font-family: 'Bodoni Moda', serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--content-text);
+  margin: var(--content-space-xl) 0 var(--content-space-lg) 0;
+  padding-bottom: var(--content-space-sm);
+}
+
+.recipe-content-h2__text {
+  position: relative;
+  z-index: 1;
+}
+
+.recipe-content-h2__underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--content-accent) 0%, transparent 100%);
+  
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineSlideIn 0.6s ease 0.2s forwards;
+}
+
+@keyframes underlineSlideIn {
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+/* Titres H3 - Plus discrets */
+.recipe-content-h3 {
+  font-family: 'hkMedium', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--content-text);
+  
+  margin: var(--content-space-lg) 0 var(--content-space-md) 0;
+  
+  position: relative;
+}
+
+.recipe-content-h3::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  width: 4px;
+  height: 20px;
+  background: var(--content-accent-light);
+  border-radius: 2px;
+  
+  opacity: 0;
+  animation: accentBarSlideIn 0.4s ease 0.1s forwards;
+}
+
+@keyframes accentBarSlideIn {
+  to { opacity: 1; }
+}
+
+/* Paragraphes */
+.recipe-content-p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--content-text);
+  
+  margin: 0;
+  
+  /* Justification douce pour une lecture fluide */
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  
+  /* Animation d'apparition subtile */
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.article-paragraph:has(> figure:only-child) {
+  display: contents;
+}
+
+/* Mise en forme du texte */
+.recipe-content-strong {
+  font-weight: 600;
+  color: var(--content-text);
+}
+
+.recipe-content-em {
+  font-style: italic;
+  color: var(--content-text-light);
+}
+
+.recipe-content-code {
+  font-family: 'SF Mono', Monaco, Consolas, monospace;
+  font-size: 16px;
+  
+  background: var(--content-neutral);
+  color: var(--content-accent);
+  
+  padding: 2px 6px;
+  border-radius: var(--content-radius-sm);
+  
+  border: 1px solid var(--content-neutral-dark);
+}
+
+/* === IMAGES === */
+.recipe-content-figure {
+  margin: var(--content-space-xl) 0;
+  
+  /* Animation d'apparition */
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.6s ease 0.2s forwards;
+}
+
+.recipe-content-figure__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--content-radius-lg);
+  box-shadow: var(--content-shadow-soft);
+  
+  background: var(--content-neutral);
+}
+
+.recipe-content-figure__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  
+  transition: transform 0.3s ease;
+}
+
+/* Effet de zoom subtil au hover (desktop uniquement) */
+@media (hover: hover) {
+  .recipe-content-figure__image-wrapper:hover .recipe-content-figure__image {
+    transform: scale(1.02);
+  }
+}
+
+.recipe-content-figure__caption {
+  margin-top: var(--content-space-sm);
+  padding: 0 var(--content-space-sm);
+  
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--content-text-muted);
+  text-align: center;
+  
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipe-content-figure__caption-credit {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* === CITATIONS ET MISES EN AVANT === */
+
+.article-quote {
+  opacity: 0;
+  transform: translateX(-12px);
+  animation: slideInLeft 0.5s ease 0.1s forwards;
+  font-family: bodonyModa, serif;
+}
+
+.recipe-content-blockquote {
+  position: relative;
+  
+  background: var(--content-accent-subtle);
+  border-left: 4px solid var(--content-accent);
+  border-radius: 0 var(--content-radius-md) var(--content-radius-md) 0;
+  
+  padding: var(--content-space-md);
+  margin: var(--content-space-xl) 0;
+  
+  box-shadow: var(--content-shadow-subtle);
+  
+  /* Animation d'apparition */
+  opacity: 0;
+  transform: translateX(-12px);
+  animation: slideInLeft 0.5s ease 0.1s forwards;
+}
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.recipe-content-blockquote__icon {
+  color: var(--content-accent);
+  margin-bottom: var(--content-space-xs);
+  opacity: 0.6;
+}
+
+.recipe-content-blockquote__content {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--content-text-light);
+  font-style: italic;
+}
+
+.recipe-content-blockquote__content p {
+  margin: 0;
+  animation: none; /* Éviter la double animation */
+}
+
+/* === LISTES === */
+.recipe-content-ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--content-space-md) 0;
+  
+  display: flex;
+  flex-direction: column;
+  gap: var(--content-space-sm);
+}
+
+.recipe-content-li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--content-space-sm);
+  
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--content-text);
+  
+  /* Animation d'apparition échelonnée */
+  opacity: 0;
+  transform: translateX(-8px);
+  animation: slideInLeftItem 0.4s ease forwards;
+}
+
+/* Délai progressif pour chaque élément */
+.recipe-content-li:nth-child(1) { animation-delay: 0.1s; }
+.recipe-content-li:nth-child(2) { animation-delay: 0.2s; }
+.recipe-content-li:nth-child(3) { animation-delay: 0.3s; }
+.recipe-content-li:nth-child(4) { animation-delay: 0.4s; }
+.recipe-content-li:nth-child(n+5) { animation-delay: 0.5s; }
+
+@keyframes slideInLeftItem {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.recipe-content-li__bullet {
+  display: block;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  margin-top: 10px;
+  
+  background: var(--content-accent);
+  border-radius: 50%;
+  
+  transition: all 0.2s ease;
+}
+
+.recipe-content-li__content {
+  flex: 1;
+}
+
+/* Effet au hover sur les éléments de liste */
+@media (hover: hover) {
+  .recipe-content-li:hover .recipe-content-li__bullet {
+    background: var(--content-text);
+    transform: scale(1.3);
+  }
+}
+
+/* === LIENS === */
+.recipe-content-link {
+  color: var(--content-accent);
+  text-decoration: none;
+  
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.recipe-content-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  
+  width: 100%;
+  height: 1px;
+  background: var(--content-accent);
+  
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.recipe-content-link:hover {
+  color: var(--content-text);
+}
+
+.recipe-content-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.recipe-content-link--external {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.recipe-content-link__external-icon {
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.recipe-content-link--external:hover .recipe-content-link__external-icon {
+  opacity: 1;
+}
+
+/* === SÉPARATEURS === */
+.recipe-content-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--content-space-md);
+  
+  margin: var(--content-space-xxl) 0;
+  
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.recipe-content-divider__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent 0%, 
+    var(--content-neutral-dark) 50%, 
+    transparent 100%
+  );
+}
+
+.recipe-content-divider__ornament {
+  color: var(--content-accent);
+  opacity: 0.4;
+}
+
+/* === RESPONSIVE === */
+
+/* Tablette (768px+) */
+@media (min-width: 768px) {
+  .recipe-mdx-content__wrapper {
+    padding: var(--content-space-xl) var(--content-space-lg);
+  }
+  
+  .recipe-content-h2 {
+    font-size: 32px;
+  }
+  
+  .recipe-content-h3 {
+    font-size: 24px;
+  }
+  
+  .recipe-content-p {
+    font-size: 19px;
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  .recipe-mdx-content__wrapper {
+    max-width: 640px;
+    padding: var(--content-space-xxl) var(--content-space-xl);
+  }
+  
+  .recipe-content-h2 {
+    font-size: 36px;
+  }
+  
+  .recipe-content-h3 {
+    font-size: 26px;
+  }
+  
+  .recipe-content-p {
+    font-size: 20px;
+    line-height: 1.8;
+  }
+}
+
+/* === ACCESSIBILITÉ === */
+
+/* Préférences pour animations réduites */
+@media (prefers-reduced-motion: reduce) {
+  .recipe-content-h2__underline,
+  .recipe-content-h3::before,
+  .recipe-content-p,
+  .recipe-content-figure,
+  .recipe-content-blockquote,
+  .recipe-content-li,
+  .recipe-content-divider {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --content-bg: #1a1815;
+    --content-text: #e8e5e0;
+    --content-text-light: #c4c0b8;
+    --content-text-muted: #9b9690;
+    
+    --content-neutral: #2d2926;
+    --content-neutral-dark: #3f3b36;
+    
+    --content-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --content-shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Focus visible pour l'accessibilité clavier */
+.recipe-content-link:focus-visible {
+  outline: 2px solid var(--content-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* === PRINT STYLES === */
+@media print {
+  .recipe-mdx-content {
+    background: white;
+    color: black;
+  }
+  
+  .recipe-content-figure__image-wrapper {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .recipe-content-link::after {
+    display: none;
+  }
+  
+  .recipe-content-link {
+    color: black;
+    text-decoration: underline;
+  }
+}

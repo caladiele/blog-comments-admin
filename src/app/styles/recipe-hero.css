@@ -66,7 +66,7 @@
 /* Titre */
 .recipe-hero-title {
   font-family: voyage, serif;
-  font-size: clamp(28px, 7vw, 36px);
+  font-size: var(--step-5);
   font-weight: 400;
   line-height: 1.25;
   margin: 0;
@@ -99,8 +99,7 @@
   }
 
   .recipe-hero-content {
-        grid-column: 2;
-
+    grid-column: 2;
   }
   
   
@@ -124,7 +123,6 @@
     min-height: auto;
     max-width: 1280px;
     margin: 0 auto;
-    padding: 0 60px 64px 60px;
     grid-template-columns: 1fr 640px 1fr;
   }
   

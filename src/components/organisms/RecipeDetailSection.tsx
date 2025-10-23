@@ -112,7 +112,6 @@ export default function RecipeDetailsSection(props: RecipeDetailsSectionProps) {
       "suitableForDiet": "https://schema.org/VeganDiet"
     };
   };
-  console.log(props);
   const normalizedInstructions = normalizeInstructions(props.instructions);
 
   return (
